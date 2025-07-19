@@ -1,0 +1,42 @@
+package com.jonascaetanosz.github.embedmovies.tmdb.filmes.models;
+
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
+
+import com.jonascaetanosz.github.embedmovies.tmdb.TmdbConfig;
+
+public class ProductionCompanies {
+    private String name;
+    private String id;
+    private String logo_path;
+    private String origin_country;
+    
+    // getters metodos
+
+        public String getName() {
+        return name;
+    }
+
+        public String getId() {
+        return id;
+    }
+    public String getLogo_path() {
+        return String.format("/t/p/w500%s", logo_path);
+    }
+
+    public String getOrigin_country() {
+        return origin_country;
+    }
+
+    public URL getLogo_url() {
+        try{
+            URL base_Url = TmdbConfig.getMedia_Base_Url();
+            URL finaUrl = base_Url.toURI().resolve(this.getLogo_path()).toURL();
+            return finaUrl;
+    } catch (MalformedURLException | URISyntaxException e ){
+        System.err.println("URL IMAGEM EMPRESA ERRO:" + e.getMessage());
+        }
+    return null;
+    }
+}

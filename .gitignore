@@ -1,0 +1,62 @@
+# Java class files
+*.class
+
+# Log files
+*.log
+
+# Temporary files
+*.tmp
+*.swp
+*~
+
+# Build directories
+/target/
+/build/
+/out/
+
+# IDEs
+
+## IntelliJ IDEA
+/.idea/
+/*.iml
+
+## Eclipse
+/.project
+/.classpath
+/.settings/
+
+## NetBeans
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+## Visual Studio Code
+.vscode/
+
+# Maven
+.mvn/
+!**/src/main/**/maven-wrapper.jar
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+
+# Gradle
+.gradle/
+/build/
+!gradle-wrapper.jar
+gradle-app.setting
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Local or test configuration files
+config_test.ini
+*.test.ini
+*.local.ini
+.env
