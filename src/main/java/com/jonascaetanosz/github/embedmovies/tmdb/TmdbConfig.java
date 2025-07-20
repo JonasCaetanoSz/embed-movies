@@ -1,8 +1,9 @@
 package com.jonascaetanosz.github.embedmovies.tmdb;
 
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
-
 public class TmdbConfig {
     private static String api_key;
     private static URL BASE_URL;
@@ -13,10 +14,10 @@ public class TmdbConfig {
     static {
         try {
 
-        TmdbConfig.BASE_URL = new URL("https://api.themoviedb.org");
-        TmdbConfig.MEDIA_BASE_URL = new URL("https://image.tmdb.org");
+        TmdbConfig.BASE_URL = new URI("https://api.themoviedb.org").toURL();;
+        TmdbConfig.MEDIA_BASE_URL = new URI("https://image.tmdb.org").toURL();
 
-        } catch (MalformedURLException e) {
+        } catch (MalformedURLException | URISyntaxException e) {
             throw new RuntimeException("URL BASE INVALIDA:", e);
         }
     }
