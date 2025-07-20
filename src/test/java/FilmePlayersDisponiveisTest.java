@@ -3,7 +3,7 @@ import com.jonascaetanosz.github.embedmovies.tmdb.filmes.models.Player;
 
 import java.util.List;
 
-public class FilmePlayersDiponiveisTest {
+public class FilmePlayersDisponiveisTest {
     public static void main(String[] args) {
        List<Player> players =  PlayerDisponiveis.players("35");
 
