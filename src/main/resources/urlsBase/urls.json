@@ -1,3 +1,6 @@
 {
-    "players": "https://playerflixapi.com/ajax.php"
+    "players": "https://playerflixapi.com/ajax.php",
+    "embed_warezcdn_get_play": "https://embed.warezcdn.link/getPlay.php",
+    "embed_warezcdn_get_embed": "https://embed.warezcdn.link/getEmbed.php"
+
 }
