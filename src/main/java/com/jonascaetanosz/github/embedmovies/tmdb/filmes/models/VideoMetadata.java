@@ -6,7 +6,7 @@ import java.net.URI;
 import java.net.URL;
 import java.util.List;
 
-public class VideoSource {
+public class VideoMetadata {
     private boolean hls;
     private String videoImage;
     private String videoSource;

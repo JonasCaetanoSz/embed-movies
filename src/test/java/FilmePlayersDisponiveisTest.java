@@ -5,7 +5,7 @@ import java.util.List;
 
 public class FilmePlayersDisponiveisTest {
     public static void main(String[] args) {
-       List<Player> players =  PlayerDisponiveis.players("765613");
+       List<Player> players =  PlayerDisponiveis.players("35");
 
        for (Player player : players){
         System.err.println("\n---- player detalhes -----");
