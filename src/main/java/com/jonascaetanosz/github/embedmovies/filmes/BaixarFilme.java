@@ -19,9 +19,9 @@ public class BaixarFilme {
 
             // pegar VideoSource do video
 
-            if (player.getPlayerName().startsWith("Premium")) {
+            if (player.getPlayerName().startsWith("VIP")) {
 
-                videoMetadata = PlayerPremiumVideoMetadata.getVideoMetadata(player);
+                videoMetadata = PlayerVipVideoMetadata.getVideoMetadata(player);
                 
             }
 
