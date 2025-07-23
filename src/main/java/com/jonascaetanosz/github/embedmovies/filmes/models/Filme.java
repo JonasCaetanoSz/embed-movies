@@ -1,4 +1,4 @@
-package com.jonascaetanosz.github.embedmovies.tmdb.filmes.models;
+package com.jonascaetanosz.github.embedmovies.filmes.models;
 
 import com.jonascaetanosz.github.embedmovies.tmdb.TmdbConfig;
 

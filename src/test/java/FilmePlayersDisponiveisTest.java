@@ -1,5 +1,5 @@
-import com.jonascaetanosz.github.embedmovies.tmdb.filmes.PlayerDisponiveis;
-import com.jonascaetanosz.github.embedmovies.tmdb.filmes.models.Player;
+import com.jonascaetanosz.github.embedmovies.filmes.PlayerDisponiveis;
+import com.jonascaetanosz.github.embedmovies.filmes.models.Player;
 
 import java.util.List;
 

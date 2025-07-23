@@ -15,7 +15,7 @@ public class CarregarConfig {
             return key_value;
 
         } catch (IOException e) {
-            String message = String.format("TEST ERRO AO CARREGAR %s:", config_file_name);
+            String message = String.format("ERRO TEST AO CARREGAR %s:", config_file_name);
             System.err.println(message + e.getMessage());
         }
     return null;

@@ -1,9 +1,9 @@
-package com.jonascaetanosz.github.embedmovies.tmdb.filmes.utils;
+package com.jonascaetanosz.github.embedmovies.filmes.utils;
 
-import com.jonascaetanosz.github.embedmovies.tmdb.filmes.models.PremiumResponseData;
-import com.jonascaetanosz.github.embedmovies.tmdb.filmes.models.VideoMetadata;
-import com.jonascaetanosz.github.embedmovies.tmdb.filmes.models.Player;
-import com.jonascaetanosz.github.embedmovies.tmdb.embedMoviesConfig;
+import com.jonascaetanosz.github.embedmovies.filmes.models.PremiumResponseData;
+import com.jonascaetanosz.github.embedmovies.filmes.models.VideoMetadata;
+import com.jonascaetanosz.github.embedmovies.filmes.models.Player;
+import com.jonascaetanosz.github.embedmovies.embedMoviesConfig;
 
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;

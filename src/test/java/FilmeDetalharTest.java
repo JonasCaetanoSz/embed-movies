@@ -1,6 +1,6 @@
-import com.jonascaetanosz.github.embedmovies.tmdb.filmes.Detalhar;
-import com.jonascaetanosz.github.embedmovies.tmdb.filmes.models.Filme;
-import com.jonascaetanosz.github.embedmovies.tmdb.filmes.models.ProductionCompanies;
+import com.jonascaetanosz.github.embedmovies.filmes.models.ProductionCompanies;
+import com.jonascaetanosz.github.embedmovies.filmes.models.Filme;
+import com.jonascaetanosz.github.embedmovies.tmdb.DetalharFilme;
 import com.jonascaetanosz.github.embedmovies.tmdb.TmdbConfig;
 
 import utils.CarregarConfig;
@@ -9,7 +9,7 @@ public class FilmeDetalharTest {
     public static void main(String[] args) {
         String tmdb_api_key = CarregarConfig.carregar("config_test.ini", "tmdb", "api_key");
         TmdbConfig.setApiKey(tmdb_api_key);
-        Filme filme = Detalhar.DetalharFilme("35");
+        Filme filme = DetalharFilme.detalhar("35");
 
         System.out.println( String.format( "\ntitulo: %s", filme.getTitle() ) );
         System.out.println( String.format( "\noverview: %s", filme.getOverview() ) );

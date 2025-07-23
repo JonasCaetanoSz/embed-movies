@@ -1,8 +1,8 @@
-package com.jonascaetanosz.github.embedmovies.tmdb.filmes;
+package com.jonascaetanosz.github.embedmovies.filmes;
 
-import com.jonascaetanosz.github.embedmovies.tmdb.filmes.models.VideoMetadata;
-import com.jonascaetanosz.github.embedmovies.tmdb.filmes.models.Player;
-import com.jonascaetanosz.github.embedmovies.tmdb.filmes.utils.*;
+import com.jonascaetanosz.github.embedmovies.filmes.models.VideoMetadata;
+import com.jonascaetanosz.github.embedmovies.filmes.models.Player;
+import com.jonascaetanosz.github.embedmovies.filmes.utils.*;
 
 import java.util.List;
 

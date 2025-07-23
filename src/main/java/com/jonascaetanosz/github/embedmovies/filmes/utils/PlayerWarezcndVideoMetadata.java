@@ -1,10 +1,10 @@
-package com.jonascaetanosz.github.embedmovies.tmdb.filmes.utils;
+package com.jonascaetanosz.github.embedmovies.filmes.utils;
 
-import com.jonascaetanosz.github.embedmovies.tmdb.filmes.models.VideoMetadata;
-import com.jonascaetanosz.github.embedmovies.tmdb.filmes.models.warezcndData;
-import com.jonascaetanosz.github.embedmovies.tmdb.filmes.models.Player;
+import com.jonascaetanosz.github.embedmovies.filmes.models.VideoMetadata;
+import com.jonascaetanosz.github.embedmovies.filmes.models.warezcndData;
+import com.jonascaetanosz.github.embedmovies.filmes.models.Player;
 
-import com.jonascaetanosz.github.embedmovies.tmdb.embedMoviesConfig;
+import com.jonascaetanosz.github.embedmovies.embedMoviesConfig;
 
 import java.nio.charset.StandardCharsets;
 

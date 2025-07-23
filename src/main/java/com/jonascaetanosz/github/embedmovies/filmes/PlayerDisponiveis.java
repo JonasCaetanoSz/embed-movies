@@ -1,7 +1,7 @@
-package com.jonascaetanosz.github.embedmovies.tmdb.filmes;
+package com.jonascaetanosz.github.embedmovies.filmes;
 
-import com.jonascaetanosz.github.embedmovies.tmdb.filmes.models.Player;
-import com.jonascaetanosz.github.embedmovies.tmdb.embedMoviesConfig;
+import com.jonascaetanosz.github.embedmovies.filmes.models.Player;
+import com.jonascaetanosz.github.embedmovies.embedMoviesConfig;
 
 import java.util.ArrayList;
 import java.util.List;

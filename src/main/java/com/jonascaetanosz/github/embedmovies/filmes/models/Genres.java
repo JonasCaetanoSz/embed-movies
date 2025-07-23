@@ -1,4 +1,4 @@
-package com.jonascaetanosz.github.embedmovies.tmdb.filmes.models;
+package com.jonascaetanosz.github.embedmovies.filmes.models;
 
 public class Genres {
     private String id;

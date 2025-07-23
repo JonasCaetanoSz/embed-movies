@@ -1,11 +1,12 @@
-package com.jonascaetanosz.github.embedmovies.tmdb.filmes;
+package com.jonascaetanosz.github.embedmovies.tmdb;
 
-import com.google.gson.Gson;
+import com.jonascaetanosz.github.embedmovies.filmes.models.Filme;
+
 import com.google.gson.JsonSyntaxException;
-import com.jonascaetanosz.github.embedmovies.tmdb.TmdbConfig;
-import com.jonascaetanosz.github.embedmovies.tmdb.filmes.models.Filme;
+import com.google.gson.Gson;
 
 import java.io.IOException;
+
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -14,9 +15,9 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class Detalhar {
+public class DetalharFilme {
 
-    public static Filme DetalharFilme(String tmdbID){
+    public static Filme detalhar(String tmdbID){
         String apiKey = TmdbConfig.getApiKey();
         URL baseUrl = null;
         URL urlFinal = null;
