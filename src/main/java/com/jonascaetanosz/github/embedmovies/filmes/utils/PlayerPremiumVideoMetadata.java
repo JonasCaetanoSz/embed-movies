@@ -124,7 +124,7 @@ public class PlayerPremiumVideoMetadata {
         response = client.newCall(reqBuilder).execute();
         String responseContent = response.body().string();
         videoMetadata = gson.fromJson(responseContent, VideoMetadata.class);
-
+        videoMetadata.setOriginPlayer(player);
 
     } catch (IOException | IndexOutOfBoundsException | URISyntaxException e) {
         System.out.println("Erro ao procesar player Premium: " + e.getMessage());

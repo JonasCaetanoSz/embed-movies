@@ -75,7 +75,8 @@ public class PlayerVipVideoMetadata {
         response = client.newCall(reqBuilder).execute();
         String responseContent = response.body().string();
         videoMetadata = gson.fromJson(responseContent, VideoMetadata.class);
-
+        videoMetadata.setOriginPlayer(player);
+        
         } catch (IOException | URISyntaxException | IllegalStateException e){
             System.err.println("Erro ao processar player Vip:" + e.getMessage());
         }

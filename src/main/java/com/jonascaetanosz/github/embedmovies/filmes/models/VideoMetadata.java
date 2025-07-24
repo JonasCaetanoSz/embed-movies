@@ -7,6 +7,7 @@ import java.net.URL;
 import java.util.List;
 
 public class VideoMetadata {
+    private Player originPlayer;
     private boolean hls;
     private String videoImage;
     private String videoSource;
@@ -50,8 +51,17 @@ public class VideoMetadata {
         try {
             return new URI(urlStr).toURL();
         } catch (URISyntaxException | MalformedURLException e) {
-            // Pode fazer log aqui, se quiser
+
             return null;
         }
     }
+    
+    public Player getOriginPlayer() {
+        return originPlayer;
+    }
+
+    public void setOriginPlayer(Player originPlayer) {
+        this.originPlayer = originPlayer;
+    }
+
 }

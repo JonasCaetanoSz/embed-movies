@@ -104,7 +104,7 @@ public class PlayerWarezcndVideoMetadata {
 
             String jsonResponse = response.body().string();
             videoMetadata = gson.fromJson(jsonResponse, VideoMetadata.class);
-
+            videoMetadata.setOriginPlayer(player);
 
         } catch (IOException | URISyntaxException | IllegalStateException e) {
             System.err.println("Erro ao processar player Warezcnd: " + e.getMessage());
