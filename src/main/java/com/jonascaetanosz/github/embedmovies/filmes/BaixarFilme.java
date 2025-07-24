@@ -58,7 +58,7 @@ public class BaixarFilme {
 
            try {
                 Files.createDirectories(outputFolder);
-                Path sourceFilePath = outputFolder.resolve("playlist.m3u8");
+                Path sourceFilePath = outputFolder.resolve("Filme.m3u8");
                 Map<String , String> headersMap = embedMoviesConfig.getHeaders("videoSource"); 
                 Headers headers = Headers.of(headersMap);
                 URL videoSourceUrl = videoMetadata.getVideoSource();
