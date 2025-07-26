@@ -10,8 +10,6 @@ public class TmdbConfig {
     private static URL BASE_URL;
     private static URL MEDIA_BASE_URL;
     
-    // Bloco de inicialização estático
-
     static {
         try {
 
@@ -22,13 +20,10 @@ public class TmdbConfig {
             throw new RuntimeException("URL BASE INVALIDA:", e);
         }
     }
-    // setter para configurar a chave de API tmdb
 
     public static void setApiKey(String api_key) {
         TmdbConfig.api_key = api_key;
     }
-
-    // getter para pegar a chave de API
 
     public static String getApiKey(){
         if (api_key == null){
@@ -38,13 +33,9 @@ public class TmdbConfig {
         return api_key;
     }
 
-    // getter para pegar o base_url da API
-
     public static URL getApiBaseUrl(){
         return TmdbConfig.BASE_URL;
     }
-
-    // getter para pegar o poster url base do tmdb
 
     public static URL getMedia_Base_Url() {
         return MEDIA_BASE_URL;

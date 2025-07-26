@@ -1,6 +1,6 @@
 package com.jonascaetanosz.github.embedmovies.filmes;
 
-import com.jonascaetanosz.github.embedmovies.filmes.models.Player;
+import com.jonascaetanosz.github.embedmovies.filmes.models.Stream;
 import com.jonascaetanosz.github.embedmovies.embedMoviesConfig;
 
 import java.util.ArrayList;
@@ -25,11 +25,10 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
 
-public class PlayerDisponiveis {
+public class streamsAvailables {
     
-    public static List<Player> players(String tmdbID) {
+    public static List<Stream> getStreams(String tmdbID) {
         try {
-            // montar a requisição e enviar
 
             URL baseUrl = embedMoviesConfig.getUrl("players");
             String apiEndpoint = String.format("?id=%s&type=movie", tmdbID);
@@ -41,23 +40,22 @@ public class PlayerDisponiveis {
             Response response = client.newCall(request).execute();
             String responseContent = response.body().string();
 
-            // raspar os dados do html
-
-            List<Player> playersResult = new ArrayList<>();
+            List<Stream> streams = new ArrayList<>();
             Document document = Jsoup.parse( responseContent );
             String movieTitle = document.select(".info-text").text();
 
             Elements buttonsPlayer = document.select("button.player-btn");
+
             for (Element button : buttonsPlayer){
-                String playerName = button.selectFirst(".player-name").text();
-                String playerDescription = button.selectFirst(".player-description").text();
+                String streamName = button.selectFirst(".player-name").text();
+                String streamDescription = button.selectFirst(".player-description").text();
                 String onclick = button.attr("onclick");
-                String playerUrl = extractUrlFromOnClick(onclick);
-                Player player = new Player(movieTitle, playerDescription, playerName, playerUrl);
-                playersResult.add(player);
+                String streamUrl = extractUrlFromOnClick(onclick);
+                Stream stream = new Stream(movieTitle, streamDescription, streamName, streamUrl);
+                streams.add(stream);
                 
             }
-            return playersResult;
+            return streams;
 
         } catch (MalformedURLException | URISyntaxException e) {
             System.err.println("ERRO A MONTAR URL PLAYERS BASE:" + e.getMessage());
@@ -66,8 +64,6 @@ public class PlayerDisponiveis {
     }
     return null;
 }
-
-    // Extrai o link de dentro de: callPlayer("LINK_AQUI", ...)
     private static String extractUrlFromOnClick(String onclick) {
         int start = onclick.indexOf("\"") + 1;
         int end = onclick.indexOf("\"", start);

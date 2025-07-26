@@ -1,8 +1,8 @@
-package com.jonascaetanosz.github.embedmovies.filmes.utils;
+package com.jonascaetanosz.github.embedmovies.filmes.streams;
 
 import com.jonascaetanosz.github.embedmovies.filmes.models.PremiumResponseData;
-import com.jonascaetanosz.github.embedmovies.filmes.models.VideoMetadata;
-import com.jonascaetanosz.github.embedmovies.filmes.models.Player;
+import com.jonascaetanosz.github.embedmovies.filmes.models.Streaming;
+import com.jonascaetanosz.github.embedmovies.filmes.models.Stream;
 import com.jonascaetanosz.github.embedmovies.embedMoviesConfig;
 
 import okhttp3.OkHttpClient;
@@ -28,30 +28,24 @@ import java.util.Map;
 
 import com.google.gson.Gson;
 
-public class PlayerPremiumVideoMetadata {
+public class StreamPremium {
 
-    public static VideoMetadata getVideoMetadata(Player player) {
+    public static Streaming getStreaming(Stream stream) {
 
-    VideoMetadata videoMetadata = null;
+    Streaming videoSourceSreaming = null;
 
     try {
         Map<String, String> headersMap = embedMoviesConfig.getHeaders("Premium");
         Headers headers = Headers.of(headersMap);
         OkHttpClient client = new OkHttpClient();
 
-        // 1. Extrair video hash e host do link do player
-
         String videoApiHostUrl;
         String videoHash;
         Pattern pattern = Pattern.compile("https?:\\/\\/([^\\/]+)\\/video\\/([a-f0-9]+)");
-        Matcher matcher = pattern.matcher(player.getPlayerUrl().toString());
+        Matcher matcher = pattern.matcher( stream.getStreamUrl().toString() );
 
-        // 2. Request GET no player pra obter cookies de sessão
-
-        Request reqBuilder = new Request.Builder().url(player.getPlayerUrl()).headers(headers).build();
+        Request reqBuilder = new Request.Builder().url( stream.getStreamUrl() ).headers(headers).build();
         Response response = client.newCall(reqBuilder).execute();
-
-        // 3. Capturar cookies da resposta inicial
 
         List<String> setCookies = response.headers("Set-Cookie");
         StringBuilder cookieBuilder = new StringBuilder();
@@ -63,19 +57,11 @@ public class PlayerPremiumVideoMetadata {
     
         if (!matcher.find()){
 
-        // 4. se não encontrar video hash e host no player link então extrair o video Hash da pagina do player
-
-
-                // Extrair o ID do vídeo
-
                 String responseContent = response.body().string();
                 pattern = Pattern.compile("data-id\\s*=\\s*\"(\\d+)\"");
                 matcher = pattern.matcher(responseContent);
                 matcher.find();
-                System.out.println(responseContent);
                 String videoID = matcher.group(1);
-
-                // Segunda requisição (getPlayer)
                 
                 URL ApiUrlFinal = embedMoviesConfig.getUrl("embed_premium_get_play");
                 headersMap = embedMoviesConfig.getHeaders("Premium_api_get_play");
@@ -86,51 +72,48 @@ public class PlayerPremiumVideoMetadata {
                 RequestBody body = RequestBody.create(bodyData, MediaType.parse("application/x-www-form-urlencoded; charset=UTF-8"));
                 reqBuilder = new Request.Builder().url(ApiUrlFinal).post(body).headers(headers).build();
                 response = client.newCall(reqBuilder).execute();
-
-                // Parse JSON e extrair host + hash
                 
                 responseContent = response.body().string();
                 Gson gson = new Gson();
                 PremiumResponseData responseData = gson.fromJson(responseContent, PremiumResponseData.class);
 
                 pattern = Pattern.compile("https?:\\/\\/([^\\/]+)\\/video\\/([a-f0-9]+)");
-                matcher = pattern.matcher(responseData.data.video_url);
+                matcher = pattern.matcher( responseData.data.video_url );
                 matcher.find();
 
                 videoApiHostUrl = matcher.group(1);
                 videoHash = matcher.group(2);
         
-            } else { // 5. encontrou video hash e host na url do player
+            } else {
 
                 videoApiHostUrl = matcher.group(1);
                 videoHash = matcher.group(2);
 
         }
-
-        // 6. Terceira requisição (getVideo)
         
         String apiEndPoint = String.format("/player/index.php?data=%s&do=getVideo", videoHash);
         URL finalUrl = new URI("https://" + videoApiHostUrl + apiEndPoint).toURL();
 
         headersMap = embedMoviesConfig.getHeaders("Premium_api_get_video");
-        headersMap.put("Cookie", cookieHeader); // Reutiliza os cookies
+        headersMap.put("Cookie", cookieHeader);
         headers = Headers.of(headersMap);
 
         String bodyData = "hash=" + videoHash + "&r=" + URLEncoder.encode("https://" + videoApiHostUrl, StandardCharsets.UTF_8);
         RequestBody body = RequestBody.create(bodyData, MediaType.parse("application/x-www-form-urlencoded; charset=UTF-8"));
-        reqBuilder = new Request.Builder().url(finalUrl).headers(headers).post(body).build();
+        reqBuilder = new Request.Builder().url( finalUrl ).headers( headers ).post( body ).build();
         
         Gson gson = new Gson();
-        response = client.newCall(reqBuilder).execute();
+        response = client.newCall( reqBuilder ).execute();
         String responseContent = response.body().string();
-        videoMetadata = gson.fromJson(responseContent, VideoMetadata.class);
-        videoMetadata.setOriginPlayer(player);
+        System.out.println(responseContent);
+        videoSourceSreaming = gson.fromJson( responseContent , Streaming.class );
+        videoSourceSreaming.setSourceStream( stream );
 
     } catch (IOException | IndexOutOfBoundsException | URISyntaxException e) {
-        System.out.println("Erro ao procesar player Premium: " + e.getMessage());
+        System.out.println( "Erro ao procesar player Premium: " + e.getMessage() );
     }
 
-    return videoMetadata;
+    return videoSourceSreaming;
 }
 
 }

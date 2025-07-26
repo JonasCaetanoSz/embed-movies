@@ -5,8 +5,8 @@ import java.io.IOException;
 
 import org.ini4j.Ini;
 
-public class CarregarConfig {
-    public static String carregar(String config_file_name, String session, String session_key) {
+public class LoadConfigs {
+    public static String load(String config_file_name, String session, String session_key) {
 
         try {
 

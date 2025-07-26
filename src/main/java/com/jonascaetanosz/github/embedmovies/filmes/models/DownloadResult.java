@@ -4,19 +4,19 @@ import java.nio.file.Path;
 
 public class DownloadResult {
     private Path downloadPath;
-    private VideoMetadata videoMetadata; 
+    private Streaming videoSourceSreaming; 
 
-    public DownloadResult(Path downloadPath, VideoMetadata videoMetadata){
+    public DownloadResult(Path downloadPath, Streaming videoSourceSreaming){
         this.downloadPath = downloadPath;
-        this.videoMetadata = videoMetadata;
+        this.videoSourceSreaming = videoSourceSreaming;
     }
 
     public Path getDownloadPath() {
         return this.downloadPath;
     }
-    
-    public VideoMetadata getVideoMetadata() {
-        return videoMetadata;
+
+    public Streaming getVideoSourceSreaming() {
+        return videoSourceSreaming;
     }
 
 }

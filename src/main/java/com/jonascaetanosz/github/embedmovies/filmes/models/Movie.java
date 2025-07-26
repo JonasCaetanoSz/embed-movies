@@ -7,7 +7,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.List;
 
-public class Filme {
+public class Movie {
     private String title;
     private String overview;
     private String imdb_id;

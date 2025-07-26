@@ -1,6 +1,6 @@
 package com.jonascaetanosz.github.embedmovies.tmdb;
 
-import com.jonascaetanosz.github.embedmovies.filmes.models.Filme;
+import com.jonascaetanosz.github.embedmovies.filmes.models.Movie;
 
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.Gson;
@@ -15,15 +15,13 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class DetalharFilme {
+public class DetailsMovie {
 
-    public static Filme detalhar(String tmdbID){
+    public static Movie details(String tmdbID){
         String apiKey = TmdbConfig.getApiKey();
         URL baseUrl = null;
         URL urlFinal = null;
-        Filme movie = null;
-
-        // montar a URL para API tmdb
+        Movie movie = null;
 
         try{
             baseUrl = TmdbConfig.getApiBaseUrl();
@@ -34,14 +32,13 @@ public class DetalharFilme {
             System.err.println("ERRO AO CRIAR URL TMDB:" + e.getMessage());
         }
 
-        // fazer a requisição para a API tmdb
         try{
             OkHttpClient client = new OkHttpClient();
             Request request = new Request.Builder().url(urlFinal).build();
             Gson gson = new Gson();
             Response response = client.newCall(request).execute();
             String json_string = response.body().string();
-            movie =  gson.fromJson(json_string, Filme.class);
+            movie =  gson.fromJson(json_string, Movie.class);
             return movie;
 
         } catch(IOException | JsonSyntaxException| NullPointerException e){

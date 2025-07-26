@@ -6,14 +6,14 @@ import java.net.URI;
 import java.net.URL;
 import java.util.List;
 
-public class VideoMetadata {
-    private Player originPlayer;
-    private boolean hls;
+public class Streaming {
     private String videoImage;
     private String videoSource;
     private String securedLink;
+    private Stream sourceStream;
     private List<String> downloadLinks;
     private List<String> attachmentLinks;
+    private boolean hls;
     private String ck;
 
     public boolean isHls() {
@@ -56,12 +56,12 @@ public class VideoMetadata {
         }
     }
     
-    public Player getOriginPlayer() {
-        return originPlayer;
+    public Stream getSourceStream() {
+        return sourceStream;
     }
 
-    public void setOriginPlayer(Player originPlayer) {
-        this.originPlayer = originPlayer;
+    public void setSourceStream(Stream sourceStream) {
+        this.sourceStream = sourceStream;
     }
 
 }
