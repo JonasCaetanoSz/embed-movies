@@ -14,7 +14,7 @@ public class TmdbConfig {
         try {
 
         TmdbConfig.BASE_URL = new URI("https://api.themoviedb.org").toURL();;
-        TmdbConfig.MEDIA_BASE_URL = new URI("https://image.tmdb.org").toURL();
+        TmdbConfig.MEDIA_BASE_URL = new URI("https://image.tmdb.org/t/p/w500").toURL();
 
         } catch (MalformedURLException | URISyntaxException e) {
             throw new RuntimeException("URL BASE INVALIDA:", e);

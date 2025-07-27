@@ -12,8 +12,6 @@ public class ProductionCompanies {
     private String logo_path;
     private String origin_country;
     
-    // getters metodos
-
         public String getName() {
         return name;
     }
@@ -22,7 +20,7 @@ public class ProductionCompanies {
         return id;
     }
     public String getLogo_path() {
-        return String.format("/t/p/w500%s", logo_path);
+        return logo_path;
     }
 
     public String getOrigin_country() {
