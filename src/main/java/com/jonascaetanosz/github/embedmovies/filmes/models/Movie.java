@@ -52,7 +52,7 @@ public class Movie {
     }
 
     public String getPoster_path() {
-        return String.format("/t/p/w500%s", poster_path);
+        return poster_path;
     }
 
     public List<ProductionCompanies> getProduction_companies() {
@@ -82,7 +82,7 @@ public class Movie {
     public URL getPoster_url() {
         try{
             URL base_Url = TmdbConfig.getMedia_Base_Url();
-            URL finaUrl = base_Url.toURI().resolve(this.getPoster_path()).toURL();
+            URL finaUrl = base_Url.toURI().resolve(this.getPoster_path().substring(1)).toURL();
             return finaUrl;
     } catch (MalformedURLException | URISyntaxException e ){
         System.err.println("URL IMAGEM POSTER ERRO:" + e.getMessage());

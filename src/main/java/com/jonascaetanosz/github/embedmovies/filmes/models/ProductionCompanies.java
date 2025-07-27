@@ -30,7 +30,7 @@ public class ProductionCompanies {
     public URL getLogo_url() {
         try{
             URL base_Url = TmdbConfig.getMedia_Base_Url();
-            URL finaUrl = base_Url.toURI().resolve(this.getLogo_path()).toURL();
+            URL finaUrl = base_Url.toURI().resolve(this.getLogo_path().substring(1)).toURL();
             return finaUrl;
     } catch (MalformedURLException | URISyntaxException e ){
         System.err.println("URL IMAGEM EMPRESA ERRO:" + e.getMessage());
