@@ -1,4 +1,4 @@
-package com.jonascaetanosz.github.embedmovies.filmes.streams;
+package com.github.jonascaetanosz.embedmovies.filmes.streams;
 
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
@@ -7,11 +7,10 @@ import okhttp3.Response;
 import okhttp3.Request;
 import okhttp3.Headers;
 
+import com.github.jonascaetanosz.embedmovies.embedMoviesConfig;
+import com.github.jonascaetanosz.embedmovies.filmes.models.Stream;
+import com.github.jonascaetanosz.embedmovies.filmes.models.Streaming;
 import com.google.gson.Gson;
-
-import com.jonascaetanosz.github.embedmovies.filmes.models.Streaming;
-import com.jonascaetanosz.github.embedmovies.filmes.models.Stream;
-import com.jonascaetanosz.github.embedmovies.embedMoviesConfig;
 
 import java.nio.charset.StandardCharsets;
 

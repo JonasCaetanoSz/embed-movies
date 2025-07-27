@@ -1,9 +1,8 @@
-import com.jonascaetanosz.github.embedmovies.tmdb.TmdbConfig;
-import com.jonascaetanosz.github.embedmovies.tmdb.models.Media;
-
 import java.util.List;
 
-import com.jonascaetanosz.github.embedmovies.tmdb.Search;
+import com.github.jonascaetanosz.embedmovies.tmdb.Search;
+import com.github.jonascaetanosz.embedmovies.tmdb.TmdbConfig;
+import com.github.jonascaetanosz.embedmovies.tmdb.models.Media;
 
 import utils.LoadConfigs;
 

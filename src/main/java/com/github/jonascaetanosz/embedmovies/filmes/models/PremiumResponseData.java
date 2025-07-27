@@ -1,4 +1,4 @@
-package com.jonascaetanosz.github.embedmovies.filmes.models;
+package com.github.jonascaetanosz.embedmovies.filmes.models;
 public class PremiumResponseData {
     public String errors;
     public String message;

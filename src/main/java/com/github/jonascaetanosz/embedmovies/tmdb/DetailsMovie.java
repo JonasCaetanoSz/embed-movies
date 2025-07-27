@@ -1,8 +1,7 @@
-package com.jonascaetanosz.github.embedmovies.tmdb;
-
-import com.jonascaetanosz.github.embedmovies.filmes.models.Movie;
+package com.github.jonascaetanosz.embedmovies.tmdb;
 
 import com.google.gson.JsonSyntaxException;
+import com.github.jonascaetanosz.embedmovies.filmes.models.Movie;
 import com.google.gson.Gson;
 
 import java.io.IOException;

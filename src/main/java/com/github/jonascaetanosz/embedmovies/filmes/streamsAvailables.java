@@ -1,7 +1,4 @@
-package com.jonascaetanosz.github.embedmovies.filmes;
-
-import com.jonascaetanosz.github.embedmovies.filmes.models.Stream;
-import com.jonascaetanosz.github.embedmovies.embedMoviesConfig;
+package com.github.jonascaetanosz.embedmovies.filmes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +10,10 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 import org.jsoup.select.Elements;
+
+import com.github.jonascaetanosz.embedmovies.embedMoviesConfig;
+import com.github.jonascaetanosz.embedmovies.filmes.models.Stream;
+
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.Jsoup;

@@ -1,15 +1,15 @@
 
-import com.jonascaetanosz.github.embedmovies.filmes.models.DownloadResult;
-import com.jonascaetanosz.github.embedmovies.filmes.models.Stream;
-import com.jonascaetanosz.github.embedmovies.filmes.models.Movie;
-import com.jonascaetanosz.github.embedmovies.filmes.DownloadMovie;
-import com.jonascaetanosz.github.embedmovies.tmdb.TmdbConfig;
-
-import com.jonascaetanosz.github.embedmovies.tmdb.DetailsMovie;
-
 import utils.LoadConfigs;
 
 import java.nio.file.Paths;
+
+import com.github.jonascaetanosz.embedmovies.filmes.DownloadMovie;
+import com.github.jonascaetanosz.embedmovies.filmes.models.DownloadResult;
+import com.github.jonascaetanosz.embedmovies.filmes.models.Movie;
+import com.github.jonascaetanosz.embedmovies.filmes.models.Stream;
+import com.github.jonascaetanosz.embedmovies.tmdb.DetailsMovie;
+import com.github.jonascaetanosz.embedmovies.tmdb.TmdbConfig;
+
 import java.nio.file.Path;
 
 

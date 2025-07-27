@@ -1,7 +1,7 @@
-import com.jonascaetanosz.github.embedmovies.filmes.streamsAvailables;
-import com.jonascaetanosz.github.embedmovies.filmes.models.Stream;
-
 import java.util.List;
+
+import com.github.jonascaetanosz.embedmovies.filmes.streamsAvailables;
+import com.github.jonascaetanosz.embedmovies.filmes.models.Stream;
 
 public class MovieStreamsAvailablesTest {
     public static void main(String[] args) {

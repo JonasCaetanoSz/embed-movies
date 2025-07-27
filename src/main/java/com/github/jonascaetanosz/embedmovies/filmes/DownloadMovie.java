@@ -1,10 +1,4 @@
-package com.jonascaetanosz.github.embedmovies.filmes;
-
-import com.jonascaetanosz.github.embedmovies.filmes.models.Streaming;
-import com.jonascaetanosz.github.embedmovies.filmes.streams.*;
-import com.jonascaetanosz.github.embedmovies.filmes.models.DownloadResult;
-import com.jonascaetanosz.github.embedmovies.filmes.models.Stream;
-import com.jonascaetanosz.github.embedmovies.embedMoviesConfig;
+package com.github.jonascaetanosz.embedmovies.filmes;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -17,6 +11,12 @@ import okhttp3.Request;
 
 import java.util.List;
 import java.util.Map;
+
+import com.github.jonascaetanosz.embedmovies.embedMoviesConfig;
+import com.github.jonascaetanosz.embedmovies.filmes.models.DownloadResult;
+import com.github.jonascaetanosz.embedmovies.filmes.models.Stream;
+import com.github.jonascaetanosz.embedmovies.filmes.models.Streaming;
+import com.github.jonascaetanosz.embedmovies.filmes.streams.*;
 
 import java.net.URL;
 

@@ -1,10 +1,4 @@
-package com.jonascaetanosz.github.embedmovies.filmes.streams;
-
-import com.jonascaetanosz.github.embedmovies.filmes.models.Streaming;
-import com.jonascaetanosz.github.embedmovies.filmes.models.warezcndResponseData;
-import com.jonascaetanosz.github.embedmovies.filmes.models.Stream;
-
-import com.jonascaetanosz.github.embedmovies.embedMoviesConfig;
+package com.github.jonascaetanosz.embedmovies.filmes.streams;
 
 import java.nio.charset.StandardCharsets;
 
@@ -14,6 +8,10 @@ import java.net.URLEncoder;
 import java.net.URI;
 import java.net.URL;
 
+import com.github.jonascaetanosz.embedmovies.embedMoviesConfig;
+import com.github.jonascaetanosz.embedmovies.filmes.models.Stream;
+import com.github.jonascaetanosz.embedmovies.filmes.models.Streaming;
+import com.github.jonascaetanosz.embedmovies.filmes.models.warezcndResponseData;
 import com.google.gson.Gson;
 
 

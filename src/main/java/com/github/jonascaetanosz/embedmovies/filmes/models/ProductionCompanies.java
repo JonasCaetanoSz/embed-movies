@@ -1,10 +1,10 @@
-package com.jonascaetanosz.github.embedmovies.filmes.models;
+package com.github.jonascaetanosz.embedmovies.filmes.models;
 
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 
-import com.jonascaetanosz.github.embedmovies.tmdb.TmdbConfig;
+import com.github.jonascaetanosz.embedmovies.tmdb.TmdbConfig;
 
 public class ProductionCompanies {
     private String name;

@@ -1,7 +1,7 @@
-import com.jonascaetanosz.github.embedmovies.filmes.models.ProductionCompanies;
-import com.jonascaetanosz.github.embedmovies.filmes.models.Movie;
-import com.jonascaetanosz.github.embedmovies.tmdb.DetailsMovie;
-import com.jonascaetanosz.github.embedmovies.tmdb.TmdbConfig;
+import com.github.jonascaetanosz.embedmovies.filmes.models.Movie;
+import com.github.jonascaetanosz.embedmovies.filmes.models.ProductionCompanies;
+import com.github.jonascaetanosz.embedmovies.tmdb.DetailsMovie;
+import com.github.jonascaetanosz.embedmovies.tmdb.TmdbConfig;
 
 import utils.LoadConfigs;
 

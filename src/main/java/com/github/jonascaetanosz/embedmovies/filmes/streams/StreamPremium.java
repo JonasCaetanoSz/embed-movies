@@ -1,9 +1,4 @@
-package com.jonascaetanosz.github.embedmovies.filmes.streams;
-
-import com.jonascaetanosz.github.embedmovies.filmes.models.PremiumResponseData;
-import com.jonascaetanosz.github.embedmovies.filmes.models.Streaming;
-import com.jonascaetanosz.github.embedmovies.filmes.models.Stream;
-import com.jonascaetanosz.github.embedmovies.embedMoviesConfig;
+package com.github.jonascaetanosz.embedmovies.filmes.streams;
 
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
@@ -26,6 +21,10 @@ import java.util.regex.*;
 import java.util.List;
 import java.util.Map;
 
+import com.github.jonascaetanosz.embedmovies.embedMoviesConfig;
+import com.github.jonascaetanosz.embedmovies.filmes.models.PremiumResponseData;
+import com.github.jonascaetanosz.embedmovies.filmes.models.Stream;
+import com.github.jonascaetanosz.embedmovies.filmes.models.Streaming;
 import com.google.gson.Gson;
 
 public class StreamPremium {

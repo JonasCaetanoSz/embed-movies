@@ -1,8 +1,7 @@
-package com.jonascaetanosz.github.embedmovies.tmdb;
+package com.github.jonascaetanosz.embedmovies.tmdb;
 
-import com.jonascaetanosz.github.embedmovies.tmdb.models.MediaResponse;
-import com.jonascaetanosz.github.embedmovies.tmdb.models.Media;
-
+import com.github.jonascaetanosz.embedmovies.tmdb.models.Media;
+import com.github.jonascaetanosz.embedmovies.tmdb.models.MediaResponse;
 import com.google.gson.Gson;
 
 import java.nio.charset.StandardCharsets;

@@ -1,4 +1,4 @@
-package com.jonascaetanosz.github.embedmovies.tmdb.models;
+package com.github.jonascaetanosz.embedmovies.tmdb.models;
 
 import java.util.List;
 

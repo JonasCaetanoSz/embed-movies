@@ -1,4 +1,4 @@
-package com.jonascaetanosz.github.embedmovies.filmes.models;
+package com.github.jonascaetanosz.embedmovies.filmes.models;
 
 import java.nio.file.Path;
 

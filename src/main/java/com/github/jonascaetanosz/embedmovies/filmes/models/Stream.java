@@ -1,4 +1,4 @@
-package com.jonascaetanosz.github.embedmovies.filmes.models;
+package com.github.jonascaetanosz.embedmovies.filmes.models;
 
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;

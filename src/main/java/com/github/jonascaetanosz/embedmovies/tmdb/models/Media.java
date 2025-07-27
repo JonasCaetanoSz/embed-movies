@@ -1,12 +1,12 @@
-package com.jonascaetanosz.github.embedmovies.tmdb.models;
-
-import com.jonascaetanosz.github.embedmovies.tmdb.TmdbConfig;
+package com.github.jonascaetanosz.embedmovies.tmdb.models;
 
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 
 import java.util.List;
+
+import com.github.jonascaetanosz.embedmovies.tmdb.TmdbConfig;
 
 
 public class Media {

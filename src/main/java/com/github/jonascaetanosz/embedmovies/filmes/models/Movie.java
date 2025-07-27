@@ -1,11 +1,11 @@
-package com.jonascaetanosz.github.embedmovies.filmes.models;
-
-import com.jonascaetanosz.github.embedmovies.tmdb.TmdbConfig;
+package com.github.jonascaetanosz.embedmovies.filmes.models;
 
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.List;
+
+import com.github.jonascaetanosz.embedmovies.tmdb.TmdbConfig;
 
 public class Movie {
     private String title;
