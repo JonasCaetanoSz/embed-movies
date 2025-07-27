@@ -23,8 +23,6 @@ public class Movie {
     private Float vote_average;
     private Float vote_count;
 
-    // getters metodos
-
     public String getTitle() {
         return title;
     }
