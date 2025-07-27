@@ -97,7 +97,7 @@ public class Media {
             URL base_Url = TmdbConfig.getMedia_Base_Url();
             URL finaUrl = base_Url.toURI().resolve( this.getPoster_path().substring(1) ).toURL();
             return finaUrl;
-    } catch (MalformedURLException | URISyntaxException e ){
+    } catch (MalformedURLException | URISyntaxException | NullPointerException e ){
         System.err.println("URL IMAGEM POSTER ERRO:" + e.getMessage());
         } 
     return null;
