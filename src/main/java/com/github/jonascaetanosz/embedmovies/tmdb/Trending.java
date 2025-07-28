@@ -20,14 +20,13 @@ import java.net.URI;
 
 import java.util.List;
 
-public class Search {
-    public static List<Media> search(String query){
+public class Trending {
+    public static List<Media> all(){
         String apiKey = TmdbConfig.getApiKey();
         URL baseUrl = TmdbConfig.getApiBaseUrl();
 
         try {
-            String querySecure = URLEncoder.encode(query, StandardCharsets.UTF_8.toString());
-            String apiEndPoint = String.format("/3/search/multi?api_key=%s&query=%s&language=pt-BR", apiKey, querySecure);
+            String apiEndPoint = String.format("/3/trending/all/day?api_key=%s&language=pt-BR", apiKey);
             URL apiFinalUrl = new URI(baseUrl + apiEndPoint).toURL();
             OkHttpClient client = new OkHttpClient();
             Request reqBuilder = new Request.Builder().url(apiFinalUrl).build();
@@ -40,7 +39,7 @@ public class Search {
             return medias;
 
         } catch( IOException | URISyntaxException e){
-            System.err.println("ERRO BUSCA MEDIAS:" + e.getMessage());
+            System.err.println("ERRO BUSCA MEDIAS POPULAR:" + e.getMessage());
         }
     return null;
     }  
