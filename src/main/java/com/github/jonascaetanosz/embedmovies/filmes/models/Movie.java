@@ -16,6 +16,7 @@ public class Movie {
     private String original_title;
     private String popularity;
     private String poster_path;
+    private String backdrop_path;
     private List<ProductionCompanies> production_companies;
     private List<Genres> genres;
     private String status;
@@ -79,6 +80,10 @@ public class Movie {
         return vote_count;
     }
 
+    public String getBackdrop_path() {
+        return backdrop_path;
+    }
+
     public URL getPoster_url() {
         try{
             URL base_Url = TmdbConfig.getMedia_Base_Url();
@@ -90,4 +95,14 @@ public class Movie {
     return null;
     }
 
+    public URL getBackdrop_url() {
+        try{
+            URL base_Url = TmdbConfig.getMedia_Base_Url();
+            URL finaUrl = base_Url.toURI().resolve(this.getBackdrop_path().substring(1)).toURL();
+            return finaUrl;
+    } catch (MalformedURLException | URISyntaxException | NullPointerException e ){
+        System.err.println("URL IMAGEM BACKDROP ERRO:" + e.getMessage());
+        }
+    return null;
+    }
 }

@@ -103,4 +103,15 @@ public class Media {
     return null;
 
     }
+
+    public URL getBackdrop_url() {
+        try{
+            URL base_Url = TmdbConfig.getMedia_Base_Url();
+            URL finaUrl = base_Url.toURI().resolve(this.getBackdrop_path().substring(1)).toURL();
+            return finaUrl;
+    } catch (MalformedURLException | URISyntaxException | NullPointerException e ){
+        System.err.println("URL IMAGEM BACKDROP ERRO:" + e.getMessage());
+        }
+    return null;
+    }
 }

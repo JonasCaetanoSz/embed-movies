@@ -19,7 +19,8 @@ public class MovieDetailsTest {
         System.out.println( String.format( "\ntitulo original: %s", movie.getOriginal_title() ) );
         System.out.println( String.format( "\npopularidade: %s", movie.getPopularity() ) );
         System.out.println( String.format( "\nposter_path: %s", movie.getPoster_path() ) );
-            System.out.println( String.format("poster url: %s", movie.getPoster_url() ) );
+        System.out.println( String.format("poster url: %s", movie.getPoster_url() ) );
+        System.out.println( String.format("backdrop url: %s", movie.getBackdrop_url() ) );
 
         System.out.println( "\n----empresas de produção:----\n" );
 
