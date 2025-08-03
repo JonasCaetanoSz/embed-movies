@@ -108,7 +108,7 @@ public class StreamPremium {
         videoSourceSreaming = gson.fromJson( responseContent , Streaming.class );
         videoSourceSreaming.setSourceStream( stream );
 
-    } catch (IOException | IndexOutOfBoundsException | URISyntaxException e) {
+    } catch (IOException | URISyntaxException | IllegalStateException | IndexOutOfBoundsException  e) {
         System.out.println( "Erro ao procesar player Premium: " + e.getMessage() );
     }
 

@@ -44,7 +44,7 @@ public class StreamWarezcnd {
             matcher.find();
 
             warezcndResponseData[] dados = gson.fromJson(matcher.group(1), warezcndResponseData[].class);
-            warezcndResponseData item = dados[1];
+            warezcndResponseData item = (dados.length > 1) ? dados[1] : dados[0];
 
             String sv = item.servers.split(",")[0];
             String id = item.id;
@@ -90,7 +90,7 @@ public class StreamWarezcnd {
             videoSourceSreaming = gson.fromJson( jsonResponse, Streaming.class );
             videoSourceSreaming.setSourceStream( stream );
 
-        } catch (IOException | URISyntaxException | IllegalStateException e) {
+        } catch (IOException | URISyntaxException | IllegalStateException | IndexOutOfBoundsException  e) {
             System.err.println("Erro ao processar player Warezcnd: " + e.getMessage() );
         }
     

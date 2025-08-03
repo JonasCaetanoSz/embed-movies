@@ -71,7 +71,7 @@ public class StreamVip {
         videoSourceSreaming = gson.fromJson(responseContent, Streaming.class);
         videoSourceSreaming.setSourceStream( stream );
         
-        } catch (IOException | URISyntaxException | IllegalStateException e){
+        } catch (IOException | URISyntaxException | IllegalStateException | IndexOutOfBoundsException  e){
             System.err.println("Erro ao processar player Vip:" + e.getMessage());
         }
 
