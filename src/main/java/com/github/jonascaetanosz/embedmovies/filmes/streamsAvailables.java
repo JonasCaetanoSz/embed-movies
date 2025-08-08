@@ -37,10 +37,19 @@ public class streamsAvailables {
             Map<String, String> headersMap = embedMoviesConfig.getHeaders("players");
             Headers headers = Headers.of(headersMap);
             OkHttpClient client = new OkHttpClient();
-            Request request = new Request.Builder().url(finaUrl).headers(headers).build();
-            Response response = client.newCall(request).execute();
-            String responseContent = response.body().string();
 
+            Request request = new Request.Builder().url(finaUrl).headers(headers).build();
+            Response response = null;
+
+            for (int i = 0; i < 5; i++){
+                try {
+                    response = client.newCall(request).execute();
+                    break;
+                } catch (Exception e) {
+                    System.out.println("ERRO AO PROCESSAR PLAYERS: " + e.getMessage()) ;
+                }
+            }
+            String responseContent = response.body().string();
             List<Stream> streams = new ArrayList<>();
             Document document = Jsoup.parse( responseContent );
             String movieTitle = document.select(".info-text").text();
