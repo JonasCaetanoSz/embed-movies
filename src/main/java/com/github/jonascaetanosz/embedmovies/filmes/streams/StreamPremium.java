@@ -104,7 +104,6 @@ public class StreamPremium {
         Gson gson = new Gson();
         response = client.newCall( reqBuilder ).execute();
         String responseContent = response.body().string();
-        System.out.println(responseContent);
         videoSourceSreaming = gson.fromJson( responseContent , Streaming.class );
         videoSourceSreaming.setSourceStream( stream );
 

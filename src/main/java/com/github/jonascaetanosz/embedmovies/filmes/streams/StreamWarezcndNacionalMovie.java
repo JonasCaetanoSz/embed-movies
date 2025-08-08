@@ -21,7 +21,7 @@ import java.util.Map;
 import okhttp3.*;
 
 
-public class StreamWarezcnd {
+public class StreamWarezcndNacionalMovie {
     
     public static Streaming getStreaming(Stream stream) {
     {
@@ -44,7 +44,7 @@ public class StreamWarezcnd {
             matcher.find();
 
             warezcndResponseData[] dados = gson.fromJson(matcher.group(1), warezcndResponseData[].class);
-            warezcndResponseData item = dados[1];
+            warezcndResponseData item = dados[0];
 
             String sv = item.servers.split(",")[0];
             String id = item.id;
@@ -88,10 +88,16 @@ public class StreamWarezcnd {
 
             String jsonResponse = response.body().string();
             videoSourceSreaming = gson.fromJson( jsonResponse, Streaming.class );
-            videoSourceSreaming.setSourceStream( stream );
+            Stream streamOrigin = new Stream(
+                stream.getMovieTitle(),
+                stream.getStreamDescription(),
+                stream.getStreamName() + " nacional", 
+                stream.getStreamUrl().toString()
+            );
+            videoSourceSreaming.setSourceStream( streamOrigin );
 
         } catch (IOException | URISyntaxException | IllegalStateException | IndexOutOfBoundsException  e) {
-            System.err.println("Erro ao processar player Warezcnd: " + e.getMessage() );
+            System.err.println("Erro ao processar player Warezcnd nacional: " + e.getMessage() );
         }
     
     return videoSourceSreaming;

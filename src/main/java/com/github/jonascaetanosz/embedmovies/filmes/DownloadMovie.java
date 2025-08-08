@@ -40,6 +40,18 @@ public class DownloadMovie {
             if ( stream.getStreamName().startsWith( "Premium") ){
                 videoSourceSreaming = StreamPremium.getStreaming(stream);
             }
+
+            if ( (streams.indexOf(stream) + 1) == streams.size() & videoSourceSreaming == null ){
+                Stream streamWarezcdnNacional = (Stream) streams.stream()
+                    .filter(s -> stream.getStreamName().startsWith("Warezcnd"))
+                    .findFirst()
+                    .orElse(null);
+
+                videoSourceSreaming = (streamWarezcdnNacional != null)
+                    ? StreamWarezcndNacionalMovie.getStreaming(stream)
+                    : null;
+            }
+
             // stop loop if found streaming
 
             if (videoSourceSreaming != null){

@@ -13,7 +13,6 @@ import com.github.jonascaetanosz.embedmovies.filmes.models.Streaming;
 import com.google.gson.Gson;
 
 import java.nio.charset.StandardCharsets;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.List;

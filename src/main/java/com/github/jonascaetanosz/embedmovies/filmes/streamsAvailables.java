@@ -45,8 +45,12 @@ public class streamsAvailables {
             Document document = Jsoup.parse( responseContent );
             String movieTitle = document.select(".info-text").text();
 
-            Elements buttonsPlayer = document.select("button.player-btn");
+            Elements buttonsPlayer = document.select("button.hostDub");
 
+            if (buttonsPlayer.size() == 0){
+                buttonsPlayer = document.select("button.hostLeg");
+            }
+            
             for (Element button : buttonsPlayer){
                 String streamName = button.selectFirst(".player-name").text();
                 String streamDescription = button.selectFirst(".player-description").text();

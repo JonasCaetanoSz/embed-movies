@@ -19,14 +19,14 @@ public class DownloadMovieTest {
 
         String tmdb_api_key = LoadConfigs.load("config_test.ini", "tmdb", "api_key");
         TmdbConfig.setApiKey(tmdb_api_key);
-        String tmdbID = "862";
+        String tmdbID = "35";
         Movie tmdbMovie = DetailsMovie.details( tmdbID );
         String safeTitle = tmdbMovie.getTitle().replaceAll("[\\\\/:*?\"<>|]", "_");
         Path downloadsPath = Paths.get(System.getProperty("user.home"), "Downloads");
         Path movieDir = downloadsPath.resolve(safeTitle);
         DownloadResult result = DownloadMovie.startDownload(tmdbID, movieDir);
         if (result == null){
-            String messsage = String.format("[%s - download falhou] nenhum arquivo foi salvo.");
+            String messsage = String.format("[%s - download falhou] nenhum arquivo foi salvo.", tmdbMovie.getImdb_id());
             System.out.println(messsage);
         } else{
             Stream streamOrigin = result.getVideoSourceSreaming().getSourceStream();

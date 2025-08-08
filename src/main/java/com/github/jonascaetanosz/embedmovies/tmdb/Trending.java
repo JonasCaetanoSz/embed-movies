@@ -4,11 +4,7 @@ import com.github.jonascaetanosz.embedmovies.tmdb.models.Media;
 import com.github.jonascaetanosz.embedmovies.tmdb.models.MediaResponse;
 import com.google.gson.Gson;
 
-import java.nio.charset.StandardCharsets;
-import java.net.URLEncoder;
-
 import java.io.IOException;
-
 
 import okhttp3.OkHttpClient;
 import okhttp3.Response;
