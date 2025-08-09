@@ -7,7 +7,7 @@ public class TvStreamsAvailablesTest {
     public static void main(String[] args) {
 
         String tmdbID = "71446";
-        String episodeNumber = "1";
+        String episodeNumber = "2";
         String seasonNumber = "1";
        List<Stream> streams =  streamsAvailables.getStreams(tmdbID, episodeNumber, seasonNumber);
 
