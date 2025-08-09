@@ -1,0 +1,88 @@
+package com.github.jonascaetanosz.embedmovies.tv;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Headers;
+import okhttp3.Response;
+import okhttp3.Request;
+
+import java.util.List;
+import java.util.Map;
+
+import com.github.jonascaetanosz.embedmovies.embedMoviesConfig;
+import com.github.jonascaetanosz.embedmovies.tv.models.DownloadResult;
+import com.github.jonascaetanosz.embedmovies.tv.models.Stream;
+import com.github.jonascaetanosz.embedmovies.tv.models.Streaming;
+import com.github.jonascaetanosz.embedmovies.tv.streams.*;
+
+import java.net.URL;
+
+public class DownloadTv {
+
+    public static DownloadResult startDownload(String tmdbID, Path outputFolder, String season, String episode) {
+
+        List<Stream> streams = streamsAvailables.getStreams(tmdbID, season, episode);
+        Streaming videoSourceSreaming = null;
+
+        for (Stream stream : streams) {
+
+            if (stream.getStreamName().startsWith( "Warezcnd") ){
+                videoSourceSreaming = StreamWarezcnd.getStreaming(stream);
+            }
+
+            if ( stream.getStreamName().startsWith( "VIP") ){
+                videoSourceSreaming = StreamVip.getStreaming(stream);
+            }
+
+            if ( stream.getStreamName().startsWith( "Premium") ){
+                videoSourceSreaming = StreamPremium.getStreaming(stream);
+            }
+
+            if ( (streams.indexOf(stream) + 1) == streams.size() & videoSourceSreaming == null ){
+                Stream streamWarezcdnNacional = (Stream) streams.stream()
+                    .filter(s -> stream.getStreamName().startsWith("Warezcnd"))
+                    .findFirst()
+                    .orElse(null);
+
+                videoSourceSreaming = (streamWarezcdnNacional != null)
+                    ? StreamWarezcndNacionalMovie.getStreaming(stream)
+                    : null;
+            }
+
+            // stop loop if found streaming
+
+            if (videoSourceSreaming != null){
+                break;
+            }
+
+        }   
+        // download
+
+        if (videoSourceSreaming != null){
+
+           try {
+                Files.createDirectories(outputFolder);
+                Path sourceFilePath = outputFolder.resolve( String.format("episodio %s.m3u8", episode) );
+                Map<String , String> headersMap = embedMoviesConfig.getHeaders("videoSource"); 
+                Headers headers = Headers.of( headersMap );
+                URL videoSourceUrl = videoSourceSreaming.getVideoSource();
+                OkHttpClient client = new OkHttpClient();
+                Request reqBuilder = new Request.Builder().url( videoSourceUrl ).headers( headers ).build();
+                Response response = client.newCall(reqBuilder).execute();
+                String responseContent = response.body().string();
+                Files.writeString(sourceFilePath, responseContent );
+                DownloadResult result = new DownloadResult( sourceFilePath, videoSourceSreaming );
+                return result;
+
+           } catch (IOException e) {
+                System.err.println("Erro ao baixar serie episodio :" + e.getMessage());
+           }
+        }
+    return null;
+
+    }
+    
+}
