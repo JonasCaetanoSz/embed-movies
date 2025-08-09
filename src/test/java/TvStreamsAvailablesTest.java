@@ -9,7 +9,7 @@ public class TvStreamsAvailablesTest {
         String tmdbID = "71446";
         String episodeNumber = "2";
         String seasonNumber = "1";
-       List<Stream> streams =  streamsAvailables.getStreams(tmdbID, episodeNumber, seasonNumber);
+       List<Stream> streams =  streamsAvailables.getStreams(tmdbID,seasonNumber, episodeNumber);
 
        for (Stream stream : streams){
         System.err.println("\n---- player detalhes -----");
