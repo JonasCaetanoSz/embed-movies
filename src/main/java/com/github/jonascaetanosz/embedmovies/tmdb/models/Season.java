@@ -66,7 +66,7 @@ public class Season {
     }
 
 
-    public URL gettPosterUrl() {
+    public URL getPosterUrl() {
         try{
             URL base_Url = TmdbConfig.getMedia_Base_Url();
             URL finaUrl = base_Url.toURI().resolve(this.getPosterPath().substring(1)).toURL();

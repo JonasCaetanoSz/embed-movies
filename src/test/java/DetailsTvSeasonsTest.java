@@ -20,7 +20,7 @@ public class DetailsTvSeasonsTest {
             System.out.println(String.format("Número de episódios: %d", season.getEpisodeCount()));
             System.out.println(String.format("ID: %d", season.getId()));
             System.out.println(String.format("Poster path: %s", season.getPosterPath()));
-            System.out.println(String.format("Poster url: %s", season.gettPosterUrl()));
+            System.out.println(String.format("Poster url: %s", season.getPosterUrl()));
             System.out.println(String.format("Data de estreia: %s", season.getAirDate()));
             System.out.println(String.format("Número da temporada: %d", season.getSeasonNumber()));
             System.out.println(String.format("Nota média: %.1f", season.getVoteAverage()));
