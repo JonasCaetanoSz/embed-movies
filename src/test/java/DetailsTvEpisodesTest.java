@@ -24,6 +24,7 @@ public class DetailsTvEpisodesTest {
 
         for (Episode episode : episodes) {
             System.out.println("Episódio: " + episode.getEpisode_number());
+            System.out.println("banner: " + episode.getStill_url());
             System.out.println("Título: " + episode.getName());
             System.out.println("Data de exibição: " + episode.getAir_date());
             System.out.println("Duração: " + episode.getRuntime() + " minutos");

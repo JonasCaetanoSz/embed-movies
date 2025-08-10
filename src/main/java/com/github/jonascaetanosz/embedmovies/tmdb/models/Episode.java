@@ -1,6 +1,11 @@
 package com.github.jonascaetanosz.embedmovies.tmdb.models;
 
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.List;
+
+import com.github.jonascaetanosz.embedmovies.tmdb.TmdbConfig;
 
 public class Episode {
     private String air_date;
@@ -63,5 +68,18 @@ public class Episode {
     }
     public List<GuestStar> getGuest_stars() { 
         return guest_stars; 
+    }
+
+
+    public URL getStill_url() {
+        try{
+            URL base_Url = TmdbConfig.getMedia_Base_Url();
+            URL finaUrl = base_Url.toURI().resolve( this.getStill_path().substring(1) ).toURL();
+            return finaUrl;
+    } catch (MalformedURLException | URISyntaxException | NullPointerException e ){
+        System.err.println("URL IMAGEM STILL EPISODIO ERRO:" + e.getMessage());
+        } 
+    return null;
+
     }
 }
