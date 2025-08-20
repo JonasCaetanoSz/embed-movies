@@ -19,9 +19,9 @@ public class DownloadTvTest {
 
         String tmdb_api_key = LoadConfigs.load("config_test.ini", "tmdb", "api_key");
         TmdbConfig.setApiKey(tmdb_api_key);
-        String tmdbID = "71446";
-        String episodeNumber = "2";
-        String seasonNumber = "1";
+        String tmdbID = "93740";
+        String episodeNumber = "1";
+        String seasonNumber = "2";
         Tv tmdbTv = DetailsTv.details( tmdbID );
         String safeTitle = tmdbTv.getName().replaceAll("[\\\\/:*?\"<>|]", "_");
         Path downloadsPath = Paths.get(System.getProperty("user.home"), "Downloads");

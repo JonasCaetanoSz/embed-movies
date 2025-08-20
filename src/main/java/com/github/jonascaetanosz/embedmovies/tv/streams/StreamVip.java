@@ -10,6 +10,8 @@ import okhttp3.Headers;
 import com.github.jonascaetanosz.embedmovies.embedMoviesConfig;
 import com.github.jonascaetanosz.embedmovies.tv.models.Stream;
 import com.github.jonascaetanosz.embedmovies.tv.models.Streaming;
+
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.Gson;
 
 import java.nio.charset.StandardCharsets;
@@ -70,7 +72,7 @@ public class StreamVip {
         videoSourceSreaming = gson.fromJson(responseContent, Streaming.class);
         videoSourceSreaming.setSourceStream( stream );
         
-        } catch (IOException | URISyntaxException | IllegalStateException | IndexOutOfBoundsException  e){
+        } catch (IOException | URISyntaxException | IllegalStateException | IndexOutOfBoundsException| JsonSyntaxException  e){
             System.err.println("Erro ao processar series player Vip:" + e.getMessage());
         }
 

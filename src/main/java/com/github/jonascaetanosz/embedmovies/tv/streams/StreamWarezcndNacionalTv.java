@@ -12,8 +12,9 @@ import com.github.jonascaetanosz.embedmovies.embedMoviesConfig;
 import com.github.jonascaetanosz.embedmovies.tv.models.Stream;
 import com.github.jonascaetanosz.embedmovies.tv.models.Streaming;
 import com.github.jonascaetanosz.embedmovies.tv.models.warezcndResponseData;
-import com.google.gson.Gson;
 
+import com.google.gson.JsonSyntaxException;
+import com.google.gson.Gson;
 
 import java.util.regex.*;
 import java.util.Map;
@@ -21,7 +22,7 @@ import java.util.Map;
 import okhttp3.*;
 
 
-public class StreamWarezcndNacionalMovie {
+public class StreamWarezcndNacionalTv {
     
     public static Streaming getStreaming(Stream stream) {
     {
@@ -96,7 +97,7 @@ public class StreamWarezcndNacionalMovie {
             );
             videoSourceSreaming.setSourceStream( streamOrigin );
 
-        } catch (IOException | URISyntaxException | IllegalStateException | IndexOutOfBoundsException  e) {
+        } catch (IOException | URISyntaxException | IllegalStateException | IndexOutOfBoundsException  | JsonSyntaxException  e) {
             System.err.println("Erro ao processar series player Warezcnd nacional: " + e.getMessage() );
         }
     

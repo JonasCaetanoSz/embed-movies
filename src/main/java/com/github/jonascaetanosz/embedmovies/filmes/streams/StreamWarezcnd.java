@@ -12,6 +12,8 @@ import com.github.jonascaetanosz.embedmovies.embedMoviesConfig;
 import com.github.jonascaetanosz.embedmovies.filmes.models.Stream;
 import com.github.jonascaetanosz.embedmovies.filmes.models.Streaming;
 import com.github.jonascaetanosz.embedmovies.filmes.models.warezcndResponseData;
+
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.Gson;
 
 
@@ -90,7 +92,7 @@ public class StreamWarezcnd {
             videoSourceSreaming = gson.fromJson( jsonResponse, Streaming.class );
             videoSourceSreaming.setSourceStream( stream );
 
-        } catch (IOException | URISyntaxException | IllegalStateException | IndexOutOfBoundsException  e) {
+        } catch (IOException | URISyntaxException | IllegalStateException | IndexOutOfBoundsException | JsonSyntaxException e) {
             System.err.println("Erro ao processar player Warezcnd: " + e.getMessage() );
         }
     

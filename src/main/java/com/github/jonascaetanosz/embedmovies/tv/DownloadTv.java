@@ -48,7 +48,7 @@ public class DownloadTv {
                     .orElse(null);
 
                 videoSourceSreaming = (streamWarezcdnNacional != null)
-                    ? StreamWarezcndNacionalMovie.getStreaming(stream)
+                    ? StreamWarezcndNacionalTv.getStreaming(stream)
                     : null;
             }
 

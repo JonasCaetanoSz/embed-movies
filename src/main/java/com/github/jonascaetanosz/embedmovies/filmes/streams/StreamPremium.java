@@ -25,6 +25,8 @@ import com.github.jonascaetanosz.embedmovies.embedMoviesConfig;
 import com.github.jonascaetanosz.embedmovies.filmes.models.PremiumResponseData;
 import com.github.jonascaetanosz.embedmovies.filmes.models.Stream;
 import com.github.jonascaetanosz.embedmovies.filmes.models.Streaming;
+
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.Gson;
 
 public class StreamPremium {
@@ -107,7 +109,7 @@ public class StreamPremium {
         videoSourceSreaming = gson.fromJson( responseContent , Streaming.class );
         videoSourceSreaming.setSourceStream( stream );
 
-    } catch (IOException | URISyntaxException | IllegalStateException | IndexOutOfBoundsException  e) {
+    } catch (IOException | URISyntaxException | IllegalStateException | IndexOutOfBoundsException| JsonSyntaxException  e) {
         System.out.println( "Erro ao procesar player Premium: " + e.getMessage() );
     }
 
