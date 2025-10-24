@@ -29,6 +29,10 @@ public class DownloadMovie {
 
         for (Stream stream : streams) {
 
+            if (stream.getStreamName().startsWith( "Opção") ){
+                videoSourceSreaming = GenericPlayer.getStreaming(stream);
+            }
+
             if (stream.getStreamName().startsWith( "Warezcnd") ){
                 videoSourceSreaming = StreamWarezcnd.getStreaming(stream);
             }

@@ -28,6 +28,11 @@ public class DownloadTv {
         Streaming videoSourceSreaming = null;
 
         for (Stream stream : streams) {
+            
+            if (stream.getStreamName().startsWith( "Opção") ){
+                videoSourceSreaming = GenericPlayer.getStreaming(stream);
+            }
+
 
             if (stream.getStreamName().startsWith( "Warezcnd") ){
                 videoSourceSreaming = StreamWarezcnd.getStreaming(stream);

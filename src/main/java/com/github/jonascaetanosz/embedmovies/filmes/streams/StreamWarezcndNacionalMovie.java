@@ -97,9 +97,22 @@ public class StreamWarezcndNacionalMovie {
             );
             videoSourceSreaming.setSourceStream( streamOrigin );
 
+            Request reBuilder = new Request.Builder().url(videoSourceSreaming.getVideoSource()).headers(headers).build();
+            response = client.newCall(reBuilder).execute();
+
+            if (response.code() == 200){
+                return videoSourceSreaming;
+            } else {
+                throw new Exception("video não encontrado status " + response.code() );
+            }
+
         } catch (IOException | URISyntaxException | IllegalStateException | IndexOutOfBoundsException | JsonSyntaxException e) {
             System.err.println("Erro ao processar player Warezcnd nacional: " + e.getMessage() );
         }
+         catch (Exception e){
+            System.out.println( "Erro ao procesar player Warezcnd: " + e.getMessage() );
+        }
+
     
     return videoSourceSreaming;
 
