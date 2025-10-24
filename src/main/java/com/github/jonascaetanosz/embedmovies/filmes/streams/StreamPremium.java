@@ -125,7 +125,7 @@ public class StreamPremium {
         System.out.println( "Erro ao procesar player Premium: " + e.getMessage() );
     }
 
-    return videoSourceSreaming;
+    return null;
 }
 
 }

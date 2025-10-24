@@ -89,7 +89,7 @@ public class StreamVip {
         }
 
 
-        return videoSourceSreaming;
+        return null;
     }
 
 }
