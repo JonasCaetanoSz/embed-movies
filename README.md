@@ -5,22 +5,14 @@ Biblioteca Java para obter embeds de filmes e séries a partir de dados externos
 
 ## ✅ Conteúdo deste README
 
-- [Instalação](#instalação)
-- [Importando no projeto](#importando-no-projeto-maven)
-- [Configurações](#configurações)
-- [Exemplos de uso](#=exemplos-de-uso)
-    - Conteudos em alta
-    - Buscar filmes e series
-    - Detalhar filme
-    - Detalhar serie
-    - Detalhar temporadas de serie
-    - Detalhar episodios de serie
-    - Streams disponiveis (filme)
-    - Streams disponiveis (serie)
-    - Donwload de Filme
-    - Donwload de serie
-
-- [Visão geral das classes](#visão-geral-das-classes)
+- [Instalação](#️-instalação)
+- [Importando no projeto](#-importando-no-projeto-maven)
+- [Configurações](#️-configurações)
+- [Exemplos de uso](#exemplos-de-uso)
+- [Visão geral das classes](#-visão-geral-das-classes)
+- [Contribuições](#-contribuições)
+- [Contato](#contato)
+- [Licença](#-licença)
 
 ## 🛠️ Instalação
 
