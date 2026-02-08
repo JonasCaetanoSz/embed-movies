@@ -40,6 +40,9 @@ Instale a biblioteca usando o [Maven](https://maven.apache.org/download.cgi):
 mvn install
 ```
 
+**Observação:** Precisa de JDK 17 ou superior instalado pra compilar.
+
+
 ## 📦 Importando no projeto (Maven)
 
 Adicione a dependência no seu `pom.xml`:
