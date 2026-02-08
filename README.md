@@ -1,5 +1,7 @@
 #  📦 Embed-movies - biblioteca para streaming de Filmes e Series
 
+Biblioteca Java para obter embeds de filmes e séries a partir de dados externos usando scraping 
+
 
 ## ✅ Conteúdo deste README
 
