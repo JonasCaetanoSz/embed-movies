@@ -124,8 +124,6 @@ import com.github.jonascaetanosz.embedmovies.filmes.models.ProductionCompanies;
 import com.github.jonascaetanosz.embedmovies.tmdb.DetailsMovie;
 import com.github.jonascaetanosz.embedmovies.tmdb.TmdbConfig;
 
-import utils.LoadConfigs;
-
 public class MovieDetailsTest {
     public static void main(String[] args) {
         String tmdb_api_key = "sua-chave-de-api-tmdb-aqui";
@@ -174,11 +172,9 @@ import com.github.jonascaetanosz.embedmovies.tv.models.ProductionCompany;
 import com.github.jonascaetanosz.embedmovies.tmdb.DetailsTv;
 import com.github.jonascaetanosz.embedmovies.tmdb.TmdbConfig;
 
-import utils.LoadConfigs;
-
 public class TvDetailsTest {
     public static void main(String[] args) {
-        String tmdb_api_key = LoadConfigs.load("config_test.ini", "tmdb", "api_key");
+        String tmdb_api_key = "sua-chave-de-api-tmdb-aqui";
         TmdbConfig.setApiKey(tmdb_api_key);
         Tv serie = DetailsTv.details("71446");
 
@@ -224,12 +220,11 @@ import com.github.jonascaetanosz.embedmovies.tmdb.DetailsTvSeasons;
 import com.github.jonascaetanosz.embedmovies.tmdb.models.Season;
 
 import com.github.jonascaetanosz.embedmovies.tmdb.TmdbConfig;
-import utils.LoadConfigs;
 
 public class DetailsTvSeasonsTest {
     public static void main(String[] args) {
 
-        String tmdb_api_key = LoadConfigs.load("config_test.ini", "tmdb", "api_key");
+        String tmdb_api_key = "sua-chave-de-api-tmdb-aqui";
         TmdbConfig.setApiKey(tmdb_api_key);
         String tmdbID = "71446";
         List<Season> seasons = DetailsTvSeasons.getAllSeasons(tmdbID);
@@ -262,11 +257,10 @@ import java.util.List;
 
 import com.github.jonascaetanosz.embedmovies.tmdb.DetailsTv;
 import com.github.jonascaetanosz.embedmovies.tmdb.TmdbConfig;
-import utils.LoadConfigs;
 
 public class DetailsTvEpisodesTest {
     public static void main(String[] args) {
-        String tmdb_api_key = LoadConfigs.load("config_test.ini", "tmdb", "api_key");
+        String tmdb_api_key = "sua-chave-de-api-tmdb-aqui";
         TmdbConfig.setApiKey(tmdb_api_key);
 
         String tmdbID = "71446";
