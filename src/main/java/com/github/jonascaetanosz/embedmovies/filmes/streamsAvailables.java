@@ -12,7 +12,10 @@ import okhttp3.Response;
 import org.jsoup.select.Elements;
 
 import com.github.jonascaetanosz.embedmovies.embedMoviesConfig;
+import com.github.jonascaetanosz.embedmovies.filmes.models.PlayersApiResponse;
 import com.github.jonascaetanosz.embedmovies.filmes.models.Stream;
+import com.github.jonascaetanosz.embedmovies.filmes.models.PlayersApiResponse.Option;
+import com.google.gson.Gson;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -32,7 +35,7 @@ public class streamsAvailables {
         try {
 
             URL baseUrl = embedMoviesConfig.getUrl("players");
-            String apiEndpoint = String.format("?id=%s&type=movie", tmdbID);
+            String apiEndpoint = String.format("?type=movie&id=%s&season=null&episode=null", tmdbID);
             URL finaUrl = new URI(baseUrl.toString() + apiEndpoint).toURL();
             Map<String, String> headersMap = embedMoviesConfig.getHeaders("players");
             Headers headers = Headers.of(headersMap);
@@ -49,26 +52,50 @@ public class streamsAvailables {
                     System.out.println("ERRO AO PROCESSAR PLAYERS: " + e.getMessage()) ;
                 }
             }
+
             String responseContent = response.body().string();
-            List<Stream> streams = new ArrayList<>();
-            Document document = Jsoup.parse( responseContent );
-            String movieTitle = document.select(".info-text").text();
 
-            Elements buttonsPlayer = document.select("button.hostDub");
+            if (responseContent == null) {
 
-            if (buttonsPlayer.size() == 0){
-                buttonsPlayer = document.select("button.hostLeg");
+                System.out.println("ERRO AO PROCESSAR PLAYERS: [request body is null]" );
+                return null;
             }
+
+            List<Stream> streams = new ArrayList<>();
             
-            for (Element button : buttonsPlayer){
-                String streamName = button.selectFirst(".player-name").text();
-                String streamDescription = button.selectFirst(".player-description").text();
-                String onclick = button.attr("onclick");
-                String streamUrl = extractUrlFromOnClick(onclick);
+            Gson gson = new Gson();
+            PlayersApiResponse playersResponseJson = gson.fromJson(responseContent, PlayersApiResponse.class);
+            
+            if (playersResponseJson.status() == false){
+
+                System.out.println("ERRO AO PROCESSAR PLAYERS: " + String.format("[request status code: %s ]", response.code() ));
+                return null;
+            }
+
+             String movieTitle = playersResponseJson.data().title();
+
+            for (Option option : playersResponseJson.data().options() ) {
+
+                if ( !option.lang().equalsIgnoreCase("pt-br")){
+                    continue;
+                }
+
+                String streamDescription = null;
+
+                if (option.budget().equalsIgnoreCase("success")) {
+
+                    streamDescription = "sem anuncios";
+
+                } else {
+                    streamDescription = "com anuncios";
+                }
+
+                String streamName = option.label();
+                String streamUrl = option.embed();
                 Stream stream = new Stream(movieTitle, streamDescription, streamName, streamUrl);
                 streams.add(stream);
-                
             }
+
             return streams;
 
         } catch (MalformedURLException | URISyntaxException e) {
@@ -77,14 +104,6 @@ public class streamsAvailables {
             System.err.println("ERRO AO PEGAR PLAYERS:" + e.getMessage());
     }
     return null;
+    
 }
-    private static String extractUrlFromOnClick(String onclick) {
-        int start = onclick.indexOf("\"") + 1;
-        int end = onclick.indexOf("\"", start);
-        if (start >= 0 && end > start) {
-            return onclick.substring(start, end);
-        }
-        return "URL não encontrada";
-    }
 }
-
