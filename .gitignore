@@ -1,0 +1,46 @@
+@"
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+*.so
+
+# Ambientes virtuais
+.venv/
+venv/
+env/
+
+# Variáveis de ambiente e segredos
+.env
+.env.*
+!.env.example
+
+# Testes e cobertura
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Ferramentas e editores
+.vscode/
+.idea/
+*.swp
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Builds
+build/
+dist/
+*.egg-info/
+
+# Cache de ferramentas
+.mypy_cache/
+.ruff_cache/
+
+# Maven / Java
+target/
+"@ | Set-Content -Encoding utf8 .gitignore
