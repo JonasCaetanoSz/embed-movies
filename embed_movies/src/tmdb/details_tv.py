@@ -43,5 +43,4 @@ class DetailsTV:
         )
 
         response.raise_for_status()
-
         return TVDetails.from_dict(response.json())
