@@ -1,4 +1,3 @@
-import os
 import sys
 from pathlib import Path
 from unittest.mock import Mock
@@ -28,6 +27,17 @@ def session():
         "air_date": "2011-04-17",
         "still_path": "/example.jpg",
         "vote_average": 8.2,
+        "vote_count": 100,
+        "runtime": 60,
+        "production_code": "101",
+        "episode_type": "standard",
+        "show_id": 1399,
+        "crew": [],
+        "guest_stars": [],
+        "credits": {},
+        "images": {},
+        "videos": {},
+        "external_ids": {},
     }
 
     mock_session.get.return_value = response
@@ -40,11 +50,7 @@ def details_episode(session):
 
 
 def test_get_episode_success(details_episode, session):
-    episode = details_episode.get_episode(
-        tv_id=1399,
-        season_number=1,
-        episode_number=1,
-    )
+    episode = details_episode.get_episode(1399, 1, 1)
 
     assert isinstance(episode, EpisodeDetails)
     assert episode.id == 63056
@@ -54,25 +60,28 @@ def test_get_episode_success(details_episode, session):
     assert episode.air_date == "2011-04-17"
     assert episode.still_path == "/example.jpg"
     assert episode.vote_average == 8.2
+    assert episode.vote_count == 100
+    assert episode.runtime == 60
+    assert episode.production_code == "101"
+    assert episode.episode_type == "standard"
+    assert episode.show_id == 1399
 
     session.get.assert_called_once()
-
     args, kwargs = session.get.call_args
 
     assert args[0] == (
         "https://api.themoviedb.org/3/tv/1399/season/1/episode/1"
     )
+    assert kwargs["params"]["api_key"] == "test-token"
     assert kwargs["params"]["language"] == "pt-BR"
-    assert kwargs["headers"]["Authorization"] == "Bearer test-token"
+    assert kwargs["params"]["append_to_response"] == (
+        "credits,images,videos,external_ids"
+    )
+    assert "Authorization" not in kwargs.get("headers", {})
 
 
 def test_get_episode_custom_language(details_episode, session):
-    details_episode.get_episode(
-        tv_id=1399,
-        season_number=1,
-        episode_number=1,
-        language="en-US",
-    )
+    details_episode.get_episode(1399, 1, 1, language="en-US")
 
     _, kwargs = session.get.call_args
     assert kwargs["params"]["language"] == "en-US"
@@ -84,6 +93,9 @@ def test_get_episode_still_url(details_episode):
     assert episode.still_url == (
         "https://image.tmdb.org/t/p/original/example.jpg"
     )
+    assert episode.still_url_w500 == (
+        "https://image.tmdb.org/t/p/w500/example.jpg"
+    )
 
 
 def test_get_episode_without_still(details_episode, session):
@@ -93,6 +105,7 @@ def test_get_episode_without_still(details_episode, session):
 
     assert episode.still_path is None
     assert episode.still_url is None
+    assert episode.still_url_w500 is None
 
 
 def test_get_episode_missing_optional_fields(details_episode, session):
@@ -109,6 +122,14 @@ def test_get_episode_missing_optional_fields(details_episode, session):
     assert episode.air_date is None
     assert episode.still_path is None
     assert episode.vote_average == 0.0
+    assert episode.vote_count == 0
+    assert episode.runtime is None
+    assert episode.crew == ()
+    assert episode.guest_stars == ()
+    assert episode.credits is None
+    assert episode.images is None
+    assert episode.videos is None
+    assert episode.external_ids is None
 
 
 @pytest.mark.parametrize(
@@ -145,10 +166,7 @@ def test_get_episode_invalid_ids(
 def test_get_episode_invalid_language(details_episode, session):
     with pytest.raises(ValueError):
         details_episode.get_episode(
-            tv_id=1399,
-            season_number=1,
-            episode_number=1,
-            language="",
+            1399, 1, 1, language=""
         )
 
     session.get.assert_not_called()
@@ -171,12 +189,7 @@ def test_get_episode_missing_token(monkeypatch):
 
 
 def test_get_episode_specials(details_episode, session):
-    details_episode.get_episode(
-        tv_id=1399,
-        season_number=0,
-        episode_number=1,
-    )
+    details_episode.get_episode(1399, 0, 1)
 
     args, _ = session.get.call_args
-
     assert args[0].endswith("/tv/1399/season/0/episode/1")
