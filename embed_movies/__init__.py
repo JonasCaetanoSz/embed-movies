@@ -1,3 +1,3 @@
-from .src.tmdb import tmdbClient
+from .src.tmdb import TMDBClient
 
-__all__ = ["tmdbClient"]
+__all__ = ["TMDBClient"]

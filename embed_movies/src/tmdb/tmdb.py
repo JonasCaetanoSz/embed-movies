@@ -4,7 +4,7 @@ from .details_tv import DetailsTV
 from .details_season import DetailsSeason
 
 
-class tmdbClient(
+class TMDBClient(
     Search,
     DetailsMovie,
     DetailsTV,

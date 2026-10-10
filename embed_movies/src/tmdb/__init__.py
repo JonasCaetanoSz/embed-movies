@@ -1,5 +1,5 @@
 
-from .tmdb import tmdbClient
+from .tmdb import TMDBClient
 from .search import Search
 from .details_movie import DetailsMovie
 
