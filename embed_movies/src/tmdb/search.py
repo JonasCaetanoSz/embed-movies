@@ -1,7 +1,7 @@
 import os
 import requests
 
-from embed_movies.tmdb.models import Movie, TVShow, SearchResult
+from .models import Movie, TVShow, SearchResult
 
 
 class Search:
