@@ -1,4 +1,4 @@
-@"
+
 # Python
 __pycache__/
 *.py[cod]
@@ -10,17 +10,17 @@ __pycache__/
 venv/
 env/
 
-# Variáveis de ambiente e segredos
+# Segredos
 .env
 .env.*
 !.env.example
 
-# Testes e cobertura
+# Testes
 .pytest_cache/
 .coverage
 htmlcov/
 
-# Ferramentas e editores
+# Editores
 .vscode/
 .idea/
 *.swp
@@ -29,18 +29,14 @@ htmlcov/
 .DS_Store
 Thumbs.db
 
-# Logs
-*.log
-
 # Builds
 build/
 dist/
 *.egg-info/
 
-# Cache de ferramentas
+# Ferramentas
 .mypy_cache/
 .ruff_cache/
 
-# Maven / Java
+# Java / Maven
 target/
-"@ | Set-Content -Encoding utf8 .gitignore
