@@ -1,8 +1,10 @@
 from .playerflix import PlayerFlixClient
-from .playerflix.movie.models import Player, ResponseDataPlayers 
+from .playerflix.movie.models import Player, ResponseDataPlayers, VideoSource
 
 __all__ = [
-    "MyEmbedClient",
+    "PlayerFlixClient",
+    "MovieAvailablePlayers",
     "Player",
-    "ResponseDataPlayers"
-    ]
+    "ResponseDataPlayers",
+    "VideoSource"
+]

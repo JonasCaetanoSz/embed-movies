@@ -1,9 +1,9 @@
-from .available_players import MovieAvailablePlayers
-from .models import player, ResponseDataPlayers
-
+from .extractors.available_players import MovieAvailablePlayers
+from .models import player, ResponseDataPlayers , VideoSource
 __all__ = [
     "MovieAvailablePlayers",
     "player",
-    "ResponseDataPlayers"
+    "ResponseDataPlayers",
+    "VideoSource"
 
 ]

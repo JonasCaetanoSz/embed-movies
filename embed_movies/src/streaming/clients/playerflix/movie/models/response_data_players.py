@@ -23,6 +23,7 @@ class ResponseDataPlayers:
                 budget=item["budget"],
                 icon=item["icon"],
                 embed_id=item.get("embed_id"),
+                movie_id=movie.get("movie_id")
             )
             for item in movie["options"]
         ]

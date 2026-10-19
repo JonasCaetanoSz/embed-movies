@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "embed_movies" / "src"
 sys.path.insert(0, str(SRC))
 
-from streaming.clients.playerflix.movie.available_players import (
+from streaming.clients.playerflix.movie.extractors.available_players import (
     MovieAvailablePlayers,
 )
 from streaming.clients.playerflix.movie.models import (
@@ -63,17 +63,18 @@ def headers_file(tmp_path, monkeypatch):
         "get_players": {
             "accept": "*/*",
             "x-requested-with": "XMLHttpRequest",
+            "referer": "https://playerflix.ink/filme/@ID",
         }
     }
 
-    headers_path = tmp_path / "headers.json"
+    headers_path = tmp_path / "players_available_headers.json"
     headers_path.write_text(
         json.dumps(headers),
         encoding="utf-8",
     )
 
     module = sys.modules[
-        "streaming.clients.playerflix.movie.available_players"
+        "streaming.clients.playerflix.movie.extractors.available_players"
     ]
 
     monkeypatch.setattr(
@@ -99,7 +100,7 @@ def movie_available_players():
 
 
 @patch(
-    "streaming.clients.playerflix.movie.available_players.requests.get"
+    "streaming.clients.playerflix.movie.extractors.available_players.requests.get"
 )
 def test_get_available_players_movie_success(
     mock_get,
@@ -141,11 +142,12 @@ def test_get_available_players_movie_success(
     assert kwargs["headers"] == {
         "accept": "*/*",
         "x-requested-with": "XMLHttpRequest",
+        "referer": "https://playerflix.ink/filme/35",
     }
 
 
 @patch(
-    "streaming.clients.playerflix.movie.available_players.requests.get"
+    "streaming.clients.playerflix.movie.extractors.available_players.requests.get"
 )
 def test_get_available_players_movie_http_error(
     mock_get,
@@ -165,7 +167,7 @@ def test_get_available_players_movie_http_error(
 
 
 @patch(
-    "streaming.clients.playerflix.movie.available_players.requests.get"
+    "streaming.clients.playerflix.movie.extractors.available_players.requests.get"
 )
 def test_get_available_players_movie_invalid_json(
     mock_get,

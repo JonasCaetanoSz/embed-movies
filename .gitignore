@@ -40,3 +40,7 @@ dist/
 
 # Java / Maven
 target/
+
+# dados de navegação
+
+**/browser_session
