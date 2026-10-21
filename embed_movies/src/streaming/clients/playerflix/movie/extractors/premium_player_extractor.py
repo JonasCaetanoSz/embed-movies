@@ -10,12 +10,12 @@ import requests
 
 from .base import BasePlayerExtractor
 
-from ..models.video_source import VideoSource
+from ..models.movie_video_source import MovieVideoSource
 
 from urllib.parse import urlparse
 
 if TYPE_CHECKING:
-    from ..models import Player
+    from ..models import Movieplayer
 
 
 SESSION_DIR = Path(__file__).parent / "browser_session"
@@ -23,7 +23,7 @@ SESSION_DIR = Path(__file__).parent / "browser_session"
 
 class Browser:
 
-    def __init__(self, player: "Player", headers: dict):
+    def __init__(self, player: "Movieplayer", headers: dict):
         self.player = player
         self.headers = headers
         self.browser = None
@@ -112,7 +112,7 @@ class Browser:
 
 class PremiumPlayerExtractor(BasePlayerExtractor):
 
-    def extract(self, player: "Player") -> VideoSource:
+    def extract(self, player: "Movieplayer") -> MovieVideoSource:
 
         headers_path = Path(__file__).parent / "premium_player_headers.json"
 
@@ -319,9 +319,9 @@ class PremiumPlayerExtractor(BasePlayerExtractor):
             data=data,
         )
 
-        return VideoSource(**response.json())
+        return MovieVideoSource(**response.json())
 
-    async def _extract( self, player: "Player", headers: dict) -> str:
+    async def _extract( self, player: "Movieplayer", headers: dict) -> str:
         browser = Browser(player, headers)
         cookies = []
         try:

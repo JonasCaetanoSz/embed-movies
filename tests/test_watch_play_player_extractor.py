@@ -11,7 +11,7 @@ sys.path.insert(0, str(SRC))
 from streaming.clients.playerflix.movie.extractors import (
     watch_play_player_extractor,
 )
-from streaming.clients.playerflix.movie.models.video_source import VideoSource
+from streaming.clients.playerflix.movie.models.movie_video_source import MovieVideoSource
 
 
 @pytest.fixture
@@ -63,7 +63,7 @@ def test_extract_returns_video_source(monkeypatch, extractor, player):
 
     result = extractor.extract(player)
 
-    assert isinstance(result, VideoSource)
+    assert isinstance(result, MovieVideoSource)
     assert result.videoSource == "https://vid.example.com/st/playlist.m3u8"
     assert result.hls is None
     assert result.videoImage is None

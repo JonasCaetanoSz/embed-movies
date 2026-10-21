@@ -2,9 +2,9 @@ from dataclasses import dataclass
 
 
 @dataclass
-class VideoSource:
+class TvVideoSource:
     hls: bool
-    videoImage: str
+    videoImage: str | None
     videoSource: str
     securedLink: str
     downloadLinks: list[str]

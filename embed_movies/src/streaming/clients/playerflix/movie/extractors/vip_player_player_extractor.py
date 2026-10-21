@@ -2,7 +2,7 @@ from pathlib import Path
 
 from typing import TYPE_CHECKING
 
-from ..models.video_source import VideoSource
+from ..models.movie_video_source import MovieVideoSource
 
 import requests
 
@@ -14,11 +14,11 @@ import json
 import re
 
 if TYPE_CHECKING:
-    from ..models import Player
+    from ..models import Movieplayer
     
 class VipPlayerPlayerExtractor(BasePlayerExtractor):
 
-    def extract(self, player: "Player") -> VideoSource:
+    def extract(self, player: "Movieplayer") -> MovieVideoSource:
 
         headers_path = Path(__file__).parent / "vip_player_player_headers.json"
 
@@ -48,4 +48,4 @@ class VipPlayerPlayerExtractor(BasePlayerExtractor):
         }
 
         response = requests.post(f'{PLAYER_BASE_URL}/player/index.php', params=params, headers=get_player_headers, data=data)
-        return VideoSource(**response.json())
+        return MovieVideoSource(**response.json())

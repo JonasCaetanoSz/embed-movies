@@ -4,11 +4,11 @@ import requests
 
 import json
 
-from ..models import ResponseDataPlayers, Player
+from ..models import ResponseDataPlayersMovie, Movieplayer
 
 class MovieAvailablePlayers:
     @staticmethod
-    def get_available_players_movie(movie_id: str) -> list[Player]:
+    def get_available_players_movie(movie_id: str) -> list[Movieplayer]:
 
         headers_path = Path(__file__).parent / "players_available_headers.json"
         url_base = "https://playerflix.ink/inc/Ajax.php"
@@ -31,5 +31,5 @@ class MovieAvailablePlayers:
         response_json = response.json()
         response_json["data"]["movie_id"] = movie_id
 
-        response_obj = ResponseDataPlayers(**response_json)
+        response_obj = ResponseDataPlayersMovie(**response_json)
         return response_obj.players

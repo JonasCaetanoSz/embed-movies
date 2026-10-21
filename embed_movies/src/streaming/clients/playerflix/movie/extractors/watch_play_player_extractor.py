@@ -2,7 +2,7 @@ from pathlib import Path
 
 from typing import TYPE_CHECKING
 
-from ..models.video_source import VideoSource
+from ..models.movie_video_source import MovieVideoSource
 
 import requests
 
@@ -17,7 +17,7 @@ if TYPE_CHECKING:
     
 class WatchPlayPlayerExtractor(BasePlayerExtractor):
 
-    def extract(self, player: "Player") -> VideoSource:
+    def extract(self, player: "Player") -> MovieVideoSource:
 
         headers_path = Path(__file__).parent / "watch_play_player_headers.json"
 
@@ -36,7 +36,7 @@ class WatchPlayPlayerExtractor(BasePlayerExtractor):
             raise ValueError("[PLAYERFLIX MOVIE WATCHPLAY] ERRO AO EXTRAIR VIDEO URL")
         
         VIDEO_URL = match.group(1).replace(r'\/', '/')
-        return VideoSource(
+        return MovieVideoSource(
             hls=None,
             videoImage=None,
             videoSource=VIDEO_URL,

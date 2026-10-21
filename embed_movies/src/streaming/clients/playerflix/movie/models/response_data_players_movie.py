@@ -1,19 +1,19 @@
 from dataclasses import dataclass
 
-from .player import Player
+from .player_movie import Movieplayer
 
 
 @dataclass
-class ResponseDataPlayers:
+class ResponseDataPlayersMovie:
     status: bool
     data: dict
 
     @property
-    def players(self) -> list[Player]:
+    def players(self) -> list[Movieplayer]:
         movie = self.data
 
         return [
-            Player(
+            Movieplayer(
                 id=item["id"],
                 title=movie["title"].get("pt", ""),
                 release_date=movie["release_date"],

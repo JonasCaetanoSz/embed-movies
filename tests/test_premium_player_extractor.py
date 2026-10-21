@@ -12,7 +12,7 @@ sys.path.insert(0, str(SRC))
 from streaming.clients.playerflix.movie.extractors import (
     premium_player_extractor,
 )
-from streaming.clients.playerflix.movie.models import VideoSource
+from streaming.clients.playerflix.movie.models import MovieVideoSource
 
 
 class CompletedLoop:
@@ -142,7 +142,7 @@ def test_extract_returns_video_source(monkeypatch, extractor, player):
 
     result = extractor.extract(player)
 
-    assert isinstance(result, VideoSource)
+    assert isinstance(result, MovieVideoSource)
     assert result.videoSource == "https://cdn.example/video.m3u8"
     assert result.videoImage == "https://cdn.example/poster.jpg"
     assert result.downloadLinks == [

@@ -1,8 +1,8 @@
-from .response_data_players import ResponseDataPlayers
-from .player import Player
-from .video_source import VideoSource
+from .response_data_players_movie import ResponseDataPlayersMovie
+from .player_movie import Movieplayer
+from .movie_video_source import MovieVideoSource
 __all__ = [
-    "ResponseDataPlayers",
-    "Player",
+    "ResponseDataPlayersMovie",
+    "Movieplayer",
     "VideoSource"
 ]

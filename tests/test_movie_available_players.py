@@ -15,8 +15,8 @@ from streaming.clients.playerflix.movie.extractors.available_players import (
     MovieAvailablePlayers,
 )
 from streaming.clients.playerflix.movie.models import (
-    Player,
-    ResponseDataPlayers,
+    Movieplayer,
+    ResponseDataPlayersMovie,
 )
 
 
@@ -114,7 +114,7 @@ def test_get_available_players_movie_success(
 
     assert isinstance(players, list)
     assert len(players) == 2
-    assert all(isinstance(player, Player) for player in players)
+    assert all(isinstance(player, Movieplayer) for player in players)
 
     assert players[0].id == "watchplay"
     assert players[0].title == "Os Simpsons: O Filme"
@@ -183,7 +183,7 @@ def test_get_available_players_movie_invalid_json(
 
 
 def test_response_data_players_model(response_data):
-    response = ResponseDataPlayers(**response_data)
+    response = ResponseDataPlayersMovie(**response_data)
 
     assert response.status is True
     assert len(response.players) == 2

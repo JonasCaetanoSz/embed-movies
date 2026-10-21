@@ -2,10 +2,10 @@ from abc import ABC, abstractmethod
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from ..models import Player, VideoSource
+    from ..models import Movieplayer, MovieVideoSource
 
 class BasePlayerExtractor(ABC):
 
     @abstractmethod
-    def extract(self, player:Player) -> VideoSource:
+    def extract(self, player:Movieplayer) -> MovieVideoSource:
         raise NotImplementedError

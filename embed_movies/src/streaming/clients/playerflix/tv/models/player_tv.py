@@ -1,32 +1,29 @@
 from dataclasses import dataclass
+from typing import Optional
+
+
 from ..extractors import (
-    premium_player_extractor,
     watch_play_player_extractor,
-    vip_player_player_extractor,
     base
 )
 
 EXTRACTORS = {
-    "Premium": premium_player_extractor.PremiumPlayerExtractor(),
     "WatchPlay": watch_play_player_extractor.WatchPlayPlayerExtractor(),
-    "VIP Player": vip_player_player_extractor.VipPlayerPlayerExtractor()
 }
 
-
 @dataclass
-class Player:
+class TvPlayer:
     id: str
     title: str
-    movie_id: str
     release_date: str
     label: str
     embed: str
     lang: str
     budget: str
     icon: str
-    embed_id: str | None = None
+    embed_id: Optional[str] = None
+    tv_id: Optional[int] = None
 
-
-    def get_stream(self) -> base.VideoSource:
+    def get_stream(self) -> base.TvVideoSource:
         extractor = EXTRACTORS.get(self.label)
         return extractor.extract(self)
