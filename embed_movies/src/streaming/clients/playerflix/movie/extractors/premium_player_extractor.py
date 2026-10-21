@@ -12,6 +12,8 @@ from .base import BasePlayerExtractor
 
 from ..models.video_source import VideoSource
 
+from urllib.parse import urlparse
+
 if TYPE_CHECKING:
     from ..models import Player
 
@@ -117,8 +119,13 @@ class PremiumPlayerExtractor(BasePlayerExtractor):
         with open(headers_path, "r", encoding="utf-8") as file:
             headers = json.load(file)
 
-        BASE_URL = "https://superflixapi.fun"
 
+        # obtendo base url
+
+        headers_base_url = headers.get("player_area")
+        response = requests.get(url=player.embed, headers=headers_base_url, allow_redirects=True)
+        BASE_URL = "https://" + urlparse( response.url ).netloc
+        
         # extraindo cookies
 
 
