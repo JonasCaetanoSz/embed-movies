@@ -1,12 +1,15 @@
 from dataclasses import dataclass
 from ..extractors import (
     premium_player_extractor,
-    watch_play_player_extractor
+    watch_play_player_extractor,
+    vip_player_player_extractor,
+    base
 )
 
 EXTRACTORS = {
     "Premium": premium_player_extractor.PremiumPlayerExtractor(),
-    "WatchPlay": watch_play_player_extractor.WatchPlayPlayerExtractor()
+    "WatchPlay": watch_play_player_extractor.WatchPlayPlayerExtractor(),
+    "VIP Player": vip_player_player_extractor.VipPlayerPlayerExtractor()
 }
 
 
@@ -24,6 +27,6 @@ class Player:
     embed_id: str | None = None
 
 
-    def get_stream(self):
+    def get_stream(self) -> base.VideoSource:
         extractor = EXTRACTORS.get(self.label)
         return extractor.extract(self)
