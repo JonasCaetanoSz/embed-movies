@@ -22,18 +22,30 @@ class CompletedLoop:
 
 @pytest.fixture
 def player():
-    return Mock(movie_id="movie-123", embed="https://example.com/embed")
+    return Mock(
+        movie_id="movie-123",
+        embed="https://example.com/embed",
+    )
 
 
 @pytest.fixture
 def extractor(monkeypatch):
     headers = {
-        "player_area": {"referer": "https://superflixapi.fun/filme/@ID"},
-        "boostrap_script": {"referer": "https://superflixapi.fun/@ID"},
-        "player_final": {"referer": "https://superflixapi.fun/@ID"},
-        "player_script": {"referer": "@REFERER"},
+        "player_area": {
+            "referer": "https://superflixapi.fun/filme/@ID",
+        },
+        "boostrap_script": {
+            "referer": "https://superflixapi.fun/@ID",
+        },
+        "player_final": {
+            "referer": "https://superflixapi.fun/@ID",
+        },
+        "player_script": {
+            "referer": "@REFERER",
+        },
         "video_data": {},
     }
+
     monkeypatch.setattr(
         premium_player_extractor.json,
         "load",
@@ -57,6 +69,7 @@ def extractor(monkeypatch):
         ]
 
     monkeypatch.setattr(instance, "_extract", get_cookies)
+
     return instance
 
 
@@ -70,10 +83,15 @@ def response(*, text="", data=None, cookies=None, url=""):
 
 
 def test_extract_returns_video_source(monkeypatch, extractor, player):
+    base_url_response = response(
+        url="https://superflixapi.fun/filme/movie-123",
+    )
     player_page = response(
         text='var PAGE_TOKEN = "page-token"; INITIAL_CONTENT_ID = 321;'
     )
-    bootstrap = response(data={"data": {"options": [{"ID": "98765"}]}})
+    bootstrap = response(
+        data={"data": {"options": [{"ID": "98765"}]}}
+    )
     source = response(
         data={"data": {"video_url": "https://player.example/embed"}}
     )
@@ -100,21 +118,41 @@ def test_extract_returns_video_source(monkeypatch, extractor, player):
     playlist = response(data=video_data)
 
     mock_get = Mock(
-        side_effect=[player_page, player_page_final, player_script]
+        side_effect=[
+            base_url_response,
+            player_page,
+            player_page_final,
+            player_script,
+        ]
     )
-    mock_post = Mock(side_effect=[bootstrap, source, playlist])
-    monkeypatch.setattr(premium_player_extractor.requests, "get", mock_get)
-    monkeypatch.setattr(premium_player_extractor.requests, "post", mock_post)
+    mock_post = Mock(
+        side_effect=[bootstrap, source, playlist]
+    )
+
+    monkeypatch.setattr(
+        premium_player_extractor.requests,
+        "get",
+        mock_get,
+    )
+    monkeypatch.setattr(
+        premium_player_extractor.requests,
+        "post",
+        mock_post,
+    )
 
     result = extractor.extract(player)
 
     assert isinstance(result, VideoSource)
     assert result.videoSource == "https://cdn.example/video.m3u8"
     assert result.videoImage == "https://cdn.example/poster.jpg"
-    assert result.downloadLinks == ["https://cdn.example/download"]
+    assert result.downloadLinks == [
+        "https://cdn.example/download"
+    ]
 
-    assert mock_get.call_count == 3
+    assert mock_get.call_count == 4
     assert mock_post.call_count == 3
+
+    assert mock_get.call_args_list[0].kwargs["allow_redirects"] is True
     assert mock_post.call_args_list[0].kwargs["data"]["contentid"] == 321
     assert mock_post.call_args_list[1].kwargs["data"]["video_id"] == "98765"
     assert mock_post.call_args_list[2].kwargs["data"] == {
@@ -123,18 +161,37 @@ def test_extract_returns_video_source(monkeypatch, extractor, player):
     }
 
 
-def test_extract_returns_none_when_no_cookies(monkeypatch, extractor, player):
+def test_extract_returns_none_when_no_cookies(
+    monkeypatch,
+    extractor,
+    player,
+):
     async def no_cookies(player, headers):
         return []
 
     monkeypatch.setattr(extractor, "_extract", no_cookies)
-    mock_get = Mock()
+
+    mock_get = Mock(
+        return_value=response(
+            url="https://superflixapi.fun/filme/movie-123"
+        )
+    )
     mock_post = Mock()
-    monkeypatch.setattr(premium_player_extractor.requests, "get", mock_get)
-    monkeypatch.setattr(premium_player_extractor.requests, "post", mock_post)
+
+    monkeypatch.setattr(
+        premium_player_extractor.requests,
+        "get",
+        mock_get,
+    )
+    monkeypatch.setattr(
+        premium_player_extractor.requests,
+        "post",
+        mock_post,
+    )
 
     assert extractor.extract(player) is None
-    mock_get.assert_not_called()
+
+    mock_get.assert_called_once()
     mock_post.assert_not_called()
 
 
@@ -143,13 +200,34 @@ def test_extract_raises_when_page_token_is_missing(
     extractor,
     player,
 ):
-    mock_get = Mock(return_value=response(text="INITIAL_CONTENT_ID = 321;"))
+    mock_get = Mock(
+        side_effect=[
+            response(
+                url="https://superflixapi.fun/filme/movie-123"
+            ),
+            response(
+                text="INITIAL_CONTENT_ID = 321;",
+            ),
+        ]
+    )
     mock_post = Mock()
-    monkeypatch.setattr(premium_player_extractor.requests, "get", mock_get)
-    monkeypatch.setattr(premium_player_extractor.requests, "post", mock_post)
 
-    with pytest.raises(ValueError, match="ERRO AO PUXAR PAGE TOKEN"):
+    monkeypatch.setattr(
+        premium_player_extractor.requests,
+        "get",
+        mock_get,
+    )
+    monkeypatch.setattr(
+        premium_player_extractor.requests,
+        "post",
+        mock_post,
+    )
+
+    with pytest.raises(
+        ValueError,
+        match="ERRO AO PUXAR PAGE TOKEN",
+    ):
         extractor.extract(player)
 
-    mock_get.assert_called_once()
+    assert mock_get.call_count == 2
     mock_post.assert_not_called()

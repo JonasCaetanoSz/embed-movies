@@ -1,8 +1,12 @@
 from dataclasses import dataclass
-from ..extractors import premium_player_extractor
+from ..extractors import (
+    premium_player_extractor,
+    watch_play_player_extractor
+)
 
 EXTRACTORS = {
     "Premium": premium_player_extractor.PremiumPlayerExtractor(),
+    "WatchPlay": watch_play_player_extractor.WatchPlayPlayerExtractor()
 }
 
 
