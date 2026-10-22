@@ -24,6 +24,8 @@ class ResponseDataPlayersTv:
                 icon=item["icon"],
                 embed_id=item.get("embed_id"),
                 tv_id=series.get("tv_id"),
+                season=series.get("season"),
+                episode=series.get("episode")
             )
             for item in series["options"]
         ]

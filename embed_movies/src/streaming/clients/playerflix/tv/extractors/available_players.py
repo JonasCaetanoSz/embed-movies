@@ -30,6 +30,9 @@ class TvAvailablePlayers:
 
         response_json = response.json()
         response_json["data"]["tv_id"] = str(tv_id)
+        response_json["data"]["season"] = str(season)
+        response_json["data"]["episode"] = str(episode)
+
 
         response_obj = ResponseDataPlayersTv(**response_json)
         return response_obj.players
