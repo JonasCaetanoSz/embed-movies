@@ -1,19 +1,13 @@
 
 import json
-import sys
-from pathlib import Path
 from unittest.mock import Mock
 
 import pytest
 
-ROOT = Path(__file__).resolve().parents[1]
-SRC = ROOT / "embed_movies" / "src"
-sys.path.insert(0, str(SRC))
-
-from streaming.clients.playerflix.movie.extractors import (
+from embed_movies.streaming.clients.playerflix.movie.extractors import (
     vip_player_player_extractor,
 )
-from streaming.clients.playerflix.movie.models import MovieVideoSource
+from embed_movies.streaming.clients.playerflix.movie.models import MovieVideoSource
 
 
 @pytest.fixture

@@ -1,18 +1,11 @@
 
-import sys
-from pathlib import Path
 from unittest.mock import Mock
 
 import pytest
 import requests
 
-ROOT = Path(__file__).resolve().parents[1]
-SRC = ROOT / "embed_movies" / "src"
-
-sys.path.insert(0, str(SRC))
-
-from tmdb.details_movie import DetailsMovie
-from tmdb.models import MovieDetails
+from embed_movies.tmdb.details_movie import DetailsMovie
+from embed_movies.tmdb.models import MovieDetails
 
 
 @pytest.fixture

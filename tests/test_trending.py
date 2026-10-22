@@ -1,16 +1,10 @@
 
-import sys
-from pathlib import Path
 from unittest.mock import Mock
 
 import pytest
 import requests
 
-ROOT = Path(__file__).resolve().parents[1]
-SRC = ROOT / "embed_movies" / "src"
-sys.path.insert(0, str(SRC))
-
-from tmdb.trending import Trending
+from embed_movies.tmdb.trending import Trending
 
 
 @pytest.fixture

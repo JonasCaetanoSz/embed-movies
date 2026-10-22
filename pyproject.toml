@@ -54,11 +54,11 @@ include-package-data = true
 
 [tool.setuptools.packages.find]
 where = ["embed_movies/src"]
-include = ["tmdb*", "streaming*"]
+include = ["embed_movies*"]
 
 [tool.setuptools.package-data]
-"streaming.clients.playerflix" = ["**/*.json"]
+"embed_movies.streaming.clients.playerflix.movie.extractors" = ["*.json"]
+"embed_movies.streaming.clients.playerflix.tv.extractors" = ["*.json"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = ["embed_movies/src"]

@@ -1,20 +1,15 @@
 
 import json
 import sys
-from pathlib import Path
 from unittest.mock import Mock, patch
 
 import pytest
 import requests
 
-ROOT = Path(__file__).resolve().parents[1]
-SRC = ROOT / "embed_movies" / "src"
-sys.path.insert(0, str(SRC))
-
-from streaming.clients.playerflix.movie.extractors.available_players import (
+from embed_movies.streaming.clients.playerflix.movie.extractors.available_players import (
     MovieAvailablePlayers,
 )
-from streaming.clients.playerflix.movie.models import (
+from embed_movies.streaming.clients.playerflix.movie.models import (
     Movieplayer,
     ResponseDataPlayersMovie,
 )
@@ -74,7 +69,7 @@ def headers_file(tmp_path, monkeypatch):
     )
 
     module = sys.modules[
-        "streaming.clients.playerflix.movie.extractors.available_players"
+        "embed_movies.streaming.clients.playerflix.movie.extractors.available_players"
     ]
 
     monkeypatch.setattr(
@@ -100,7 +95,7 @@ def movie_available_players():
 
 
 @patch(
-    "streaming.clients.playerflix.movie.extractors.available_players.requests.get"
+    "embed_movies.streaming.clients.playerflix.movie.extractors.available_players.requests.get"
 )
 def test_get_available_players_movie_success(
     mock_get,
@@ -147,7 +142,7 @@ def test_get_available_players_movie_success(
 
 
 @patch(
-    "streaming.clients.playerflix.movie.extractors.available_players.requests.get"
+    "embed_movies.streaming.clients.playerflix.movie.extractors.available_players.requests.get"
 )
 def test_get_available_players_movie_http_error(
     mock_get,
@@ -167,7 +162,7 @@ def test_get_available_players_movie_http_error(
 
 
 @patch(
-    "streaming.clients.playerflix.movie.extractors.available_players.requests.get"
+    "embed_movies.streaming.clients.playerflix.movie.extractors.available_players.requests.get"
 )
 def test_get_available_players_movie_invalid_json(
     mock_get,

@@ -1,18 +1,12 @@
 import asyncio
-import sys
-from pathlib import Path
 from unittest.mock import Mock
 
 import pytest
 
-ROOT = Path(__file__).resolve().parents[1]
-SRC = ROOT / "embed_movies" / "src"
-sys.path.insert(0, str(SRC))
-
-from streaming.clients.playerflix.tv.extractors import (
+from embed_movies.streaming.clients.playerflix.tv.extractors import (
     premium_player_extractor,
 )
-from streaming.clients.playerflix.tv.models import TvVideoSource
+from embed_movies.streaming.clients.playerflix.tv.models import TvVideoSource
 
 
 class CompletedLoop:
