@@ -32,4 +32,7 @@ class TvPlayer:
 
     def get_stream(self) -> base.TvVideoSource:
         extractor = EXTRACTORS.get(self.label)
+        if not extractor:
+            raise NotImplementedError(f"[PLAYERFLIX TV] nenhuma extrator disponivel para o player : {self.label}")
+       
         return extractor.extract(self)

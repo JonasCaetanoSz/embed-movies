@@ -30,4 +30,7 @@ class Movieplayer:
 
     def get_stream(self) -> base.MovieVideoSource:
         extractor = EXTRACTORS.get(self.label)
+        if not extractor:
+            raise NotImplementedError(f"[PLAYERFLIX MOVIE] nenhuma extrator disponivel para o player : {self.label}")
+        
         return extractor.extract(self)
