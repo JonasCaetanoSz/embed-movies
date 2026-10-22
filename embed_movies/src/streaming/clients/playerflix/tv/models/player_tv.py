@@ -5,12 +5,14 @@ from typing import Optional
 from ..extractors import (
     watch_play_player_extractor,
     premium_player_extractor,
+    vip_player_player_extractor,
     base
 )
 
 EXTRACTORS = {
     "WatchPlay": watch_play_player_extractor.WatchPlayPlayerExtractor(),
-    "Premium": premium_player_extractor.PremiumPlayerExtractor()
+    "Premium": premium_player_extractor.PremiumPlayerExtractor(),
+    "VIP Player": vip_player_player_extractor.VipPlayerPlayerExtractor()
 }
 
 @dataclass
