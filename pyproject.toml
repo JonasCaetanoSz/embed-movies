@@ -12,7 +12,19 @@ license = "MIT"
 authors = [
     { name = "Jonas Caetano" }
 ]
-keywords = ["movies", "series", "tmdb", "streaming", "m3u8", "embed-movies, "embed", "tv", "tmdb"]
+
+keywords = [
+    "movies",
+    "series",
+    "tmdb",
+    "streaming",
+    "m3u8",
+    "embed-movies",
+    "embed",
+    "tv",
+    "playerflix"
+]
+
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
