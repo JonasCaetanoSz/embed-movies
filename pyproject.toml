@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=77.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "embed-movies"
+version = "0.1.0"
+description = "Biblioteca para fazer streaming de filmes e series"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [
+    { name = "Jonas Caetano" }
+]
+keywords = ["movies", "series", "tmdb", "streaming", "m3u8", "embed-movies, "embed", "tv", "tmdb"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Operating System :: OS Independent",
+]
+
+dependencies = [
+    "requests>=2.32",
+    "nodriver>=0.50.6",
+    "mss>=10.2",
+    "pytest>=9.0",
+]
+
+[project.urls]
+Repository = "https://github.com/JonasCaetanoSz/embed-movies"
+Issues = "https://github.com/JonasCaetanoSz/embed-movies/issues"
+
+[tool.setuptools]
+package-dir = {"" = "embed_movies/src"}
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["embed_movies/src"]
+include = ["tmdb*", "streaming*"]
+
+[tool.setuptools.package-data]
+"streaming.clients.playerflix" = ["**/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["embed_movies/src"]
